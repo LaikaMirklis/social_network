@@ -2,37 +2,16 @@
   margin: 0 auto;
   display: grid;
   width: 1200px;
-   grid-template-areas: 
-   "h h h"
-   "n c c";
-   grid-template-rows: 60px 1fr;
-   grid-template-columns: 2fr 10fr;
-   grid-gap: 10px;
-}
-
-.header {
-grid-area: h;
-background-color: #ECE0C9;
-}
-
-.nav {
-grid-area: n;
-background-color: #ECE0C9;
+  grid-template-areas:
+    "h h h"
+    "n c c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
 }
 
 .content {
-grid-area: c;
+  grid-area: c;
 }
 
-.header img {
-  width: 40px;
-}
-
-.background {
-  width: 100%;
-}
-
-.avatar {
-  width: 160px;
-}
 /* #ECE0C9 */
