@@ -1,0 +1,12 @@
+.item {
+  color: #6c6c63;
+}
+
+.avatar {
+  width: 40px;
+  clip-path: circle(50% at 50% 50%);
+}
+
+span {
+  color: #af7557;
+}

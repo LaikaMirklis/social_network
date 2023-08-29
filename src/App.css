@@ -3,15 +3,15 @@
   display: grid;
   width: 1200px;
   grid-template-areas:
-    "h h h"
-    "n c c";
+    "header header header"
+    "navbar content content";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
 }
 
-.content {
-  grid-area: c;
+.app-wrapper-content {
+  grid-area: content;
 }
 
 /* #ECE0C9 */
