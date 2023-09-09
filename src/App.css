@@ -5,13 +5,17 @@
   grid-template-areas:
     "header header header"
     "navbar content content";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  grid-template-rows: 8vh 1fr;
+  grid-template-columns: 2fr 8fr;
+  width: 100%;
+  grid-gap: 2px;
+  font-family: "Merriweather", serif;
+  background-color: #382a2e;
 }
 
 .app-wrapper-content {
   grid-area: content;
+  background-color: #ece0c9;
 }
 
 /* #ECE0C9 */

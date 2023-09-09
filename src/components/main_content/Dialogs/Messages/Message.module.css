@@ -1,0 +1,17 @@
+.myMessage {
+  margin-left: auto;
+  margin-right: 10px;
+  border-radius: 15px 15px 0 15px;
+}
+
+.otherMessage {
+  margin-right: auto;
+  margin-left: 10px;
+  border-radius: 15px 15px 15px 0;
+}
+
+.otherMessage,
+.myMessage {
+  border: 1px solid #382a2e;
+  padding: 10px;
+}

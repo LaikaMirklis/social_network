@@ -1,4 +1,33 @@
 .dialogs {
   display: grid;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 2fr 6fr;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  height: 100%;
+}
+
+.sendArea {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+.sendArea textarea {
+  background-color: #e5d9c3;
+  border: thick double #382a2e;
+  font-family: "Merriweather", serif;
+  width: 100%;
+}
+
+.sendArea button {
+  margin-left: 20px;
+  background-color: #382a2e;
+  color: #e5d9c3;
+  font-family: "Merriweather", serif;
 }

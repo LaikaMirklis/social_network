@@ -1,0 +1,8 @@
+.friendsBlock {
+  margin-top: 140px;
+}
+
+.friendsBlock .friends {
+  display: flex;
+  flex-direction: row;
+}

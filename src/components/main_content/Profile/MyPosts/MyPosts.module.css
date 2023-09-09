@@ -1,0 +1,21 @@
+.postsBlock {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.newPost {
+}
+
+.newPost textarea {
+  background-color: #e5d9c3;
+  border: thick double #382a2e;
+  font-family: "Merriweather", serif;
+  width: 98%;
+}
+
+.newPost button {
+  background-color: #382a2e;
+  color: #e5d9c3;
+  font-family: "Merriweather", serif;
+}
