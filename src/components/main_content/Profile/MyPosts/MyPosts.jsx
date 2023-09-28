@@ -6,13 +6,22 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
 
-    let postElements = props.posts.map(p => <Post name={p.name} message={p.message} likeCount={p.likeCount} avatar={p.avatar} />)
+    let postElements = props.posts.map(p =>
+        <Post
+            name={p.name}
+            message={p.message}
+            likeCount={p.likeCount}
+            avatar={p.avatar}
+        />)
+
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        props.functions.updateNewPostText(text);
+    }
 
     let addPost = () => {
-        debugger;
-        let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = ""; //а так можна?
+        props.functions.addPost();
     };
 
     return (
@@ -20,7 +29,10 @@ const MyPosts = (props) => {
             <h3>My posts</h3>
             <div className={styles.newPost}>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea
+                        ref={newPostElement}
+                        value={props.newPostText}
+                        onChange={onPostChange} />
                 </div >
                 <div>
                     <button onClick={addPost}>Add post</button>
