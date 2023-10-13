@@ -6,7 +6,7 @@ const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
 
-    let postElements = props.posts.map(p =>
+    let postElements = props.posts.toReversed().map(p =>
         <Post
             name={p.name}
             message={p.message}
@@ -17,11 +17,11 @@ const MyPosts = (props) => {
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.functions.updateNewPostText(text);
+        props.dispatch({ type: "UPDATE-NEW-POST-TEXT", newText: text });
     }
 
     let addPost = () => {
-        props.functions.addPost();
+        props.dispatch({ type: "ADD-POST" });
     };
 
     return (

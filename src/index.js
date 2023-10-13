@@ -7,20 +7,11 @@ import { BrowserRouter } from "react-router-dom";
 import store from "./redux/state";
 
 let rerenderEntireTree = () => {
-  let addPost = store.addPost.bind(store);
-  let updateNewPostText = store.updateNewPostText.bind(store);
-
-  let addMessage = store.addMessage.bind(store);
-  let updateNewMessageText = store.updateNewMessageText.bind(store);
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App
-          state={store.getState()}
-          profilePageFunctions={{ addPost, updateNewPostText }}
-          dialogsPageFunctions={{ addMessage, updateNewMessageText }}
-        />
+        <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>
   );
