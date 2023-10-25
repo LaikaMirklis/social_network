@@ -2,12 +2,14 @@
   margin-left: auto;
   margin-right: 10px;
   border-radius: 15px 15px 0 15px;
+  max-width: 50%;
 }
 
 .otherMessage {
   margin-right: auto;
   margin-left: 10px;
   border-radius: 15px 15px 15px 0;
+  max-width: 50%;
 }
 
 .otherMessage,
@@ -15,4 +17,5 @@
   border: 1px solid #382a2e;
   padding: 10px;
   margin-bottom: 5px;
+  background-color: #ece0c9;
 }

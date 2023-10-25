@@ -6,8 +6,9 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import store from "./redux/redux-store";
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
 let rerenderEntireTree = (state) => {
-  const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
       <BrowserRouter>

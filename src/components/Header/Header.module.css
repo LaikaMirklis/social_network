@@ -1,7 +1,7 @@
 .header {
   grid-area: header;
   background-color: #ece0c9;
-  border-bottom: thick double #382a2e;
+  border-bottom: 8px double #382a2e;
   min-width: 70px;
 }
 

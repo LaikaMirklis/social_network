@@ -1,13 +1,21 @@
 .dialogs {
   display: grid;
   grid-template-columns: 2fr 6fr;
+  min-height: calc(92vh - 10px);
+  height: 100%;
+}
+
+.dialogsItems {
+  border-right: 1px solid #382a2e;
 }
 
 .messages {
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  height: 100%;
+  padding: 10px;
+  background-color: #f1e8d7;
+  word-wrap: break-word;
+  max-width: 60vw;
 }
 
 .sendArea {
@@ -19,7 +27,7 @@
 }
 
 .sendArea textarea {
-  background-color: #e5d9c3;
+  background-color: #f6f0e4;
   border: thick double #382a2e;
   font-family: "Merriweather", serif;
   width: 100%;
