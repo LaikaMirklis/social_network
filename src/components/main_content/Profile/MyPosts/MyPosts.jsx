@@ -5,6 +5,7 @@ import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../.
 
 
 const MyPosts = (props) => {
+    let t = props.t;
 
     let newPostElement = React.createRef();
 
@@ -29,17 +30,17 @@ const MyPosts = (props) => {
 
     return (
         <div className={styles.postsBlock}>
-            <h3>My posts</h3>
+            <h3>{t('profilePage.myPosts')}</h3>
             <div className={styles.newPost}>
                 <div>
                     <textarea
-                        placeholder="What's happening?"
+                        placeholder={t('profilePage.textArea')}
                         ref={newPostElement}
                         value={props.newPostText}
                         onChange={onPostChange} />
                 </div >
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={addPost}>{t('profilePage.addPostButton')}</button>
                 </div >
             </div>
             <div className={styles.posts}>

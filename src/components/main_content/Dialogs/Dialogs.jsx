@@ -5,6 +5,7 @@ import DialogItem from './DialogItem/DialogItem';
 import { sendMessageCreator, updateNewMessageBodyCreator } from "../../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
+    let t = props.t;
 
     let state = props.store.getState().dialogsPage;
 
@@ -13,6 +14,7 @@ const Dialogs = (props) => {
             name={d.name}
             id={d.id}
             avatar={d.ava}
+            t={t}
         />)
 
     let messageElements = state.messages.map(m => {
@@ -22,7 +24,7 @@ const Dialogs = (props) => {
 
     let onNewMessageChange = (e) => { // e - event
         let body = e.target.value;
-        debugger;
+        // debugger;
         props.store.dispatch(updateNewMessageBodyCreator(body));
     }
 
@@ -39,11 +41,11 @@ const Dialogs = (props) => {
                 {messageElements}
                 <div className={styles.sendArea}>
                     <textarea
-                        placeholder="Write a message..."
+                        placeholder={t('dialogsPage.textArea')}
                         value={newMessageBody}
                         onChange={onNewMessageChange}
                     />
-                    <button onClick={onSendMessageClick}>Send</button>
+                    <button onClick={onSendMessageClick}>{t('dialogsPage.sendButton')}</button>
                 </div>
 
             </div>

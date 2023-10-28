@@ -10,7 +10,7 @@ const Post = (props) => {
             </div>
             <div className={styles.message}>{props.message}</div>
             <span>
-                <FontAwesomeIcon icon={faThumbsUp} />
+                <FontAwesomeIcon icon={faThumbsUp} />{" "}
                 {props.likeCount}
             </span>
         </div>

@@ -31,11 +31,14 @@
   border: thick double #382a2e;
   font-family: "Merriweather", serif;
   width: 100%;
+  padding: 4px;
 }
 
 .sendArea button {
+  padding: 8px;
   margin-left: 20px;
   background-color: #382a2e;
   color: #e5d9c3;
   font-family: "Merriweather", serif;
+  cursor: pointer;
 }

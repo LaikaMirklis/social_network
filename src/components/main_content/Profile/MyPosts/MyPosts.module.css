@@ -9,10 +9,14 @@
   border: thick double #382a2e;
   font-family: "Merriweather", serif;
   width: 98%;
+  padding: 4px;
 }
 
 .newPost button {
+  margin-top: 4px;
+  padding: 4px;
   background-color: #382a2e;
   color: #e5d9c3;
   font-family: "Merriweather", serif;
+  cursor: pointer;
 }

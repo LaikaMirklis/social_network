@@ -2,29 +2,31 @@ import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css'
 import FriendsOnline from './FriendsOnline/FriendsOnline';
 
-
-
 const Navbar = (props) => {
+    let t = props.t; //translation
     return (
         <nav className={styles.nav}>
             <div>
                 <div className={styles.item}>
-                    <NavLink to='/profile'>Profile</NavLink>
+                    <NavLink to='/profile'> {t('navbar.profile')}</NavLink>
                 </div>
                 <div className={styles.item}>
-                    <NavLink to='/dialogs'>Messages</NavLink>
+                    <NavLink to='/dialogs'>{t('navbar.messages')}</NavLink>
                 </div>
                 <div className={styles.item}>
-                    <NavLink to='/news'>News</NavLink>
+                    <NavLink to='/news'>{t('navbar.news')}</NavLink>
                 </div>
                 <div className={styles.item}>
-                    <NavLink to='/music'>Music</NavLink>
+                    <NavLink to='/music'>{t('navbar.music')}</NavLink>
                 </div>
                 <div className={styles.item}>
-                    <NavLink to='/settings'>Settings</NavLink>
+                    <NavLink to='/settings'>{t('navbar.settings')}</NavLink>
                 </div>
             </div>
-            <FriendsOnline friends={props.sidebar.friends} />
+            <FriendsOnline
+                friends={props.sidebar.friends}
+                t={t}
+            />
         </nav>
     )
 }

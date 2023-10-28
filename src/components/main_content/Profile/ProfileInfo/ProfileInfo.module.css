@@ -1,6 +1,6 @@
 .background {
   box-sizing: border-box;
-  width: 100%;
+  width: calc(100% - 16px);
   height: 200px;
 
   /* зробити щоб це налаштовувалось користувачем */

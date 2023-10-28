@@ -1,6 +1,7 @@
 import styles from "./ProfileInfo.module.css"
 
 const ProfileInfo = (props) => {
+    let t = props.t;
     return (
         <div>
             <img

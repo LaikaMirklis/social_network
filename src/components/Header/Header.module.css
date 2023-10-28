@@ -3,6 +3,10 @@
   background-color: #ece0c9;
   border-bottom: 8px double #382a2e;
   min-width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .header img {
