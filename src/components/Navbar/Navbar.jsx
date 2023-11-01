@@ -24,7 +24,7 @@ const Navbar = (props) => {
                 </div>
             </div>
             <FriendsOnline
-                friends={props.sidebar.friends}
+                friends={props.friends}
                 t={t}
             />
         </nav>

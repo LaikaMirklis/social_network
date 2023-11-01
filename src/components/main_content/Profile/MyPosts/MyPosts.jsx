@@ -1,15 +1,11 @@
 import React from "react";
 import styles from "./MyPosts.module.css"
 import Post from "./Post/Post";
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../../redux/profile-reducer";
-
 
 const MyPosts = (props) => {
     let t = props.t;
 
-    let newPostElement = React.createRef();
-
-    let postElements = props.posts.toReversed().map(p =>
+    let postElements = props.profilePage.posts.toReversed().map(p =>
         <Post
             name={p.name}
             message={p.message}
@@ -17,15 +13,15 @@ const MyPosts = (props) => {
             avatar={p.avatar}
         />)
 
+    let newPostText = props.profilePage.newPostText;
 
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        let action = updateNewPostTextActionCreator(text);
-        props.dispatch(action);
+    let onPostChange = (e) => { // e - event
+        let text = e.target.value;
+        props.updateNewPostText(text);
     }
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
+    let onAddPost = () => {
+        props.addPost();
     };
 
     return (
@@ -35,12 +31,11 @@ const MyPosts = (props) => {
                 <div>
                     <textarea
                         placeholder={t('profilePage.textArea')}
-                        ref={newPostElement}
-                        value={props.newPostText}
+                        value={newPostText}
                         onChange={onPostChange} />
                 </div >
                 <div>
-                    <button onClick={addPost}>{t('profilePage.addPostButton')}</button>
+                    <button onClick={onAddPost}>{t('profilePage.addPostButton')}</button>
                 </div >
             </div>
             <div className={styles.posts}>

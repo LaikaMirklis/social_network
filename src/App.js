@@ -1,36 +1,31 @@
 import "./App.css";
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
+import "./i18n"; // localization
+import { useTranslation } from "react-i18next"; // hook
+
+import Header from "./components/Header/Header";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 import Profile from "./components/main_content/Profile/Profile";
-import Dialogs from "./components/main_content/Dialogs/Dialogs";
+import DialogsContainer from "./components/main_content/Dialogs/DialogsContainer";
 import News from "./components/main_content/News/News";
 import Music from "./components/main_content/Music/Music";
 import Settings from "./components/main_content/Settings/Settings";
-import "./i18n"; // localization
-import { useTranslation } from "react-i18next"; // hook
 
 const App = (props) => {
   const { t } = useTranslation();
   return (
     <div className="app-wrapper">
       <Header />
-      <Navbar sidebar={props.state.sidebar} t={t} />
+      <NavbarContainer store={props.store} t={t} />
       <div className="app-wrapper-content">
         <Routes>
           <Route
             path="/profile/"
-            element={
-              <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-                t={t}
-              />
-            }
+            element={<Profile store={props.store} t={t} />}
           />
           <Route
             path="/dialogs/"
-            element={<Dialogs store={props.store} t={t} />}
+            element={<DialogsContainer store={props.store} t={t} />}
           />
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
