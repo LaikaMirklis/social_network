@@ -1,7 +1,5 @@
 import styles from './Friend.module.css'
 
-
-
 const Friend = (props) => {
     return (
         <div className={styles.friend}>

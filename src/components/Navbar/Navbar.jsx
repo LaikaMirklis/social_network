@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.css'
 import FriendsOnline from './FriendsOnline/FriendsOnline';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = (props) => {
-    let t = props.t; //translation
+    const { t } = useTranslation();//translation
     return (
         <nav className={styles.nav}>
             <div>
