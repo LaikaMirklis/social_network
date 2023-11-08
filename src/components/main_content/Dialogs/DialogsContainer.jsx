@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import StoreContext from "../../../StoreContext";
+import LanguageContext from "../../../i18n/LanguageContext";
 import { sendMessageCreator, updateNewMessageBodyCreator } from "../../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 
-
-
 const DialogsContainer = (props) => {
-    let t = props.t;
+    let t = useContext(LanguageContext)
 
     const store = useContext(StoreContext);
 

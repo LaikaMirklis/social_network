@@ -34,35 +34,3 @@ const LangChange = (props) => {
 }
 
 export default LangChange;
-
-
-
-        // const customStyles= {
-        //     control: (styles, state)=>({
-  
-        //   
-        //        
-        //         // border: state.isFocused ? '' : "none",
-        //         boxShadow: state.isFocused ? null : null,
-        //         // borderRadius: state.isFocused ? ' ' : '8px',
-        //         "&:hover": {
-        //             border: '2px solid #382a2e',
-        //         }
-    
-        //     }),
-        // option: (styles, state)=>({
-    
-        //     ...styles,
-        //     backgroundColor: state.isSelected ? "#382a2e" : "",
-        //     color: state.isSelected ? "#ece0c9" : "",
-        //     "&:hover": {
-        //         borderColor: "none",
-        //     }
-    
-        // }),
-
-        // menuList: styles=>({
-   
-        //     // border: 'solid #382a2e',
-        //     // borderWidth: '0 2px  2px 2px  ',
-        //     // borderRadius: '0 0 8px 8px',

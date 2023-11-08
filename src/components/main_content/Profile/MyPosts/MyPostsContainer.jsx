@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import StoreContext from "../../../../StoreContext";
 import { addPostCreator, updateNewPostTextCreator } from "../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-
+import LanguageContext from "../../../../i18n/LanguageContext";
 
 const MyPostsContainer = (props) => {
-    let t = props.t;
+    let t = useContext(LanguageContext);
 
     return (
         <StoreContext.Consumer>

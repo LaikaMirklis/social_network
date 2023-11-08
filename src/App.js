@@ -10,24 +10,27 @@ import DialogsContainer from "./components/main_content/Dialogs/DialogsContainer
 import News from "./components/main_content/News/News";
 import Music from "./components/main_content/Music/Music";
 import Settings from "./components/main_content/Settings/Settings";
+import { LanguageProvider } from "./i18n/LanguageContext";
 
 const App = (props) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(); //without it button langChange don`t switch text (Ukr-Eng)
 
   return (
-    <div className="app-wrapper">
-      <Header />
-      <NavbarContainer t={t} />
-      <div className="app-wrapper-content">
-        <Routes>
-          <Route path="/profile/" element={<Profile t={t} />} />
-          <Route path="/dialogs/" element={<DialogsContainer t={t} />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/music" element={<Music />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
+    <LanguageProvider t={t}>
+      <div className="app-wrapper">
+        <Header />
+        <NavbarContainer />
+        <div className="app-wrapper-content">
+          <Routes>
+            <Route path="/profile/" element={<Profile />} />
+            <Route path="/dialogs/" element={<DialogsContainer />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/music" element={<Music />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 };
 
