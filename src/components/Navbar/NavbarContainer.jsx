@@ -1,21 +1,22 @@
-import { useContext } from 'react';
-import StoreContext from '../../StoreContext';
 import Navbar from './Navbar';
-import LanguageContext from '../../i18n/LanguageContext';
+import { connect } from 'react-redux';
+import { useTranslation } from "react-i18next";
 
 const NavbarContainer = (props) => {
+    const { t } = useTranslation();
 
-    let t = useContext(LanguageContext); //translation
-    const store = useContext(StoreContext);
+    return <Navbar {...props} t={t} />;
+};
 
-    let state = store.getState().sidebar;
-
-    return (
-        <Navbar
-            t={t}
-            friends={state.friends}
-        />
-    )
+let mapStateToProps = (state) => {
+    return {
+        sidebar: state.sidebar
+    }
 }
 
-export default NavbarContainer;
+let mapDispatchToProps = (dispatch) => {
+    return {
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);

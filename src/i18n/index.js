@@ -18,6 +18,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .use(LanguageDetector)
   .init({
+    debug: true,
     resources,
     fallbackLng: LOCALS.UKR, // if LanguageDetector don`t work
 

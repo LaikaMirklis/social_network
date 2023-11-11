@@ -1,33 +1,29 @@
-import { useContext } from "react";
-import StoreContext from "../../../../StoreContext";
 import { addPostCreator, updateNewPostTextCreator } from "../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import LanguageContext from "../../../../i18n/LanguageContext";
+import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const MyPostsContainer = (props) => {
-    let t = useContext(LanguageContext);
+    const { t } = useTranslation();
 
-    return (
-        <StoreContext.Consumer>
-            {(store) => {
-                let state = store.getState().profilePage;
-                let onPostChange = (text) => {
-                    let action = updateNewPostTextCreator(text);
-                    store.dispatch(action);
-                }
+    return <MyPosts {...props} t={t} />;
+};
 
-                let onAddPost = () => {
-                    store.dispatch(addPostCreator());
-                };
-                return (<MyPosts
-                    t={t}
-                    profilePage={state}
-                    updateNewPostText={onPostChange}
-                    addPost={onAddPost}
-                />)
-            }}
-        </StoreContext.Consumer>
-    )
-}
+const mapStateToProps = (state) => {
+    return {
+        profilePage: state.profilePage
+    };
+};
 
-export default MyPostsContainer;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewPostText: (text) => {
+            dispatch(updateNewPostTextCreator(text));
+        },
+        addPost: () => {
+            dispatch(addPostCreator());
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPostsContainer);
