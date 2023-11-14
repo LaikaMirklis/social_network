@@ -34,7 +34,6 @@ let initialState = {
       ava: "https://i.pinimg.com/564x/10/fc/b5/10fcb57a06552fbfe790cd4174c0adf5.jpg",
     },
   ],
-
   messages: [
     { id: 1, userId: 1, message: "Hi" },
     { id: 1, userId: 0, message: "Hello:)" },
@@ -46,18 +45,25 @@ let initialState = {
 
 export const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.body;
-      return state;
-    case SEND_MESSAGE:
-      let body = state.newMessageBody;
-      state.messages.push({
-        id: 4, //state.messages.length + 1
+    case UPDATE_NEW_MESSAGE_BODY: {
+      let stateCopy = { ...state };
+
+      stateCopy.newMessageBody = action.body;
+      return stateCopy;
+    }
+    case SEND_MESSAGE: {
+      let stateCopy = { ...state };
+      stateCopy.messages = [...state.messages];
+
+      let body = stateCopy.newMessageBody;
+      stateCopy.messages.push({
+        id: 4,
         userId: 0,
         message: body,
       });
-      state.newMessageBody = "";
-      return state;
+      stateCopy.newMessageBody = "";
+      return stateCopy;
+    }
     default:
       return state;
   }
