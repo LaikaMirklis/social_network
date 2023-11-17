@@ -36,34 +36,34 @@ let initialState = {
   ],
   messages: [
     { id: 1, userId: 1, message: "Hi" },
-    { id: 1, userId: 0, message: "Hello:)" },
-    { id: 2, userId: 1, message: "How is your it-kamasutra?" },
-    { id: 3, userId: 0, message: "Yo" },
+    { id: 2, userId: 0, message: "Hello:)" },
+    { id: 3, userId: 1, message: "How is your it-kamasutra?" },
+    { id: 4, userId: 0, message: "Yo" },
   ],
   newMessageBody: "",
 };
 
 export const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY: {
-      let stateCopy = { ...state };
-
-      stateCopy.newMessageBody = action.body;
-      return stateCopy;
-    }
-    case SEND_MESSAGE: {
-      let stateCopy = { ...state };
-      stateCopy.messages = [...state.messages];
-
-      let body = stateCopy.newMessageBody;
-      stateCopy.messages.push({
-        id: 4,
-        userId: 0,
-        message: body,
-      });
-      stateCopy.newMessageBody = "";
-      return stateCopy;
-    }
+    case UPDATE_NEW_MESSAGE_BODY:
+      return {
+        ...state,
+        newMessageBody: action.body,
+      };
+    case SEND_MESSAGE:
+      let body = state.newMessageBody;
+      return {
+        ...state,
+        newMessageBody: "",
+        messages: [
+          ...state.messages,
+          {
+            id: 5,
+            userId: 0,
+            message: body,
+          },
+        ],
+      };
     default:
       return state;
   }

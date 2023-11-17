@@ -6,10 +6,12 @@ const MyPosts = (props) => {
 
     let postElements = props.profilePage.posts.toReversed().map(p =>
         <Post
+            key={p.id}
             name={p.name}
             message={p.message}
             likeCount={p.likeCount}
             avatar={p.avatar}
+
         />)
 
     let newPostText = props.profilePage.newPostText;
@@ -23,6 +25,13 @@ const MyPosts = (props) => {
         props.addPost();
     };
 
+    let sendIfKeyPress = (event) => {
+        if (event.key === 'Enter' && event.ctrlKey) {  //Ctrl+Enter
+            event.preventDefault();
+            onAddPost();
+        }
+    };
+
     return (
         <div className={styles.postsBlock}>
             <h3>{t('profilePage.myPosts')}</h3>
@@ -31,7 +40,8 @@ const MyPosts = (props) => {
                     <textarea
                         placeholder={t('profilePage.textArea')}
                         value={newPostText}
-                        onChange={onPostChange} />
+                        onChange={onPostChange}
+                        onKeyDown={sendIfKeyPress} />
                 </div >
                 <div>
                     <button onClick={onAddPost}>{t('profilePage.addPostButton')}</button>

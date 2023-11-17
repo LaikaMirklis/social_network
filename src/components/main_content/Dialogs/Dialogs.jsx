@@ -7,6 +7,7 @@ const Dialogs = (props) => {
 
     let dialogsElements = props.dialogsPage.dialogs.map(d =>
         <DialogItem
+            key={d.id}
             name={d.name}
             id={d.id}
             avatar={d.ava}
@@ -14,7 +15,11 @@ const Dialogs = (props) => {
         />)
 
     let messageElements = props.dialogsPage.messages.map(m => {
-        return <Message message={m.message} userId={m.userId} />
+        return <Message
+            key={m.id}
+            message={m.message}
+            userId={m.userId}
+        />
     })
 
     let newMessageBody = props.dialogsPage.newMessageBody;
@@ -26,6 +31,13 @@ const Dialogs = (props) => {
 
     let onSendMessageClick = () => {
         props.sendMessage();
+    };
+
+    let sendIfKeyPress = (event) => {
+        if (event.key === 'Enter' && event.ctrlKey) {  //Ctrl+Enter
+            event.preventDefault();
+            onSendMessageClick();
+        }
     };
 
     return (
@@ -40,6 +52,7 @@ const Dialogs = (props) => {
                         placeholder={t('dialogsPage.textArea')}
                         value={newMessageBody}
                         onChange={onNewMessageChange}
+                        onKeyDown={sendIfKeyPress}
                     />
                     <button onClick={onSendMessageClick}>{t('dialogsPage.sendButton')}</button>
                 </div>
