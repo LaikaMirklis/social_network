@@ -11,7 +11,7 @@ const FriendsOnline = (props) => {
         />)
     return (
         <div className={styles.friendsBlock}>
-            <h2>{t('navbar.friends')}</h2>
+            <h3>{t('navbar.friends')}</h3>
             <div className={styles.friends}>{friendElements}</div>
         </div>
     )

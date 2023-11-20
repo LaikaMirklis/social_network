@@ -1,0 +1,55 @@
+.user {
+  display: flex;
+  border: 2px solid;
+  font-size: 16px;
+  padding: 20px;
+  color: #382a2e;
+  border-radius: 16px;
+  background-color: #ece0c9;
+}
+
+.user img {
+  width: 80px;
+}
+
+.userImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.followedButton {
+  padding: 4px;
+  background-color: #382a2e;
+  color: #e5d9c3;
+  font-family: "Merriweather", serif;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+.baseInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 2px solid;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.status {
+  font-weight: 500;
+}

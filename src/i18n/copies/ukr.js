@@ -4,6 +4,7 @@ export const ukr = {
     messages: "Повідомлення",
     news: "Новини",
     music: "Музика",
+    users: "Знайти користувачів",
     settings: "Налаштування",
     friends: "Друзі",
   },
@@ -18,5 +19,12 @@ export const ukr = {
     myPosts: "Мої пости",
     textArea: "Що відбувається?",
     addPostButton: "Додати пост",
+  },
+
+  usersPage: {
+    users: "Користувачі",
+    follow: "Слідкувати",
+    unfollow: "Відписатися",
+    showMoreButton: "Показати більше",
   },
 };

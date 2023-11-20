@@ -1,21 +1,21 @@
 .dialogs {
   display: grid;
-  grid-template-columns: 2fr 6fr;
+  grid-template-columns: clamp(200px, 20%, 275px) 1fr;
   min-height: calc(92vh - 10px);
   height: 100%;
 }
 
 .dialogsItems {
   border-right: 1px solid #382a2e;
+  padding-top: 15px;
+  background-color: #ece0c9;
 }
 
 .messages {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background-color: #f1e8d7;
+  padding: 20px;
   word-wrap: break-word;
-  max-width: 60vw;
 }
 
 .sendArea {
@@ -32,6 +32,7 @@
   font-family: "Merriweather", serif;
   width: 100%;
   padding: 4px;
+  font-size: 14px;
 }
 
 .sendArea button {
@@ -41,4 +42,12 @@
   color: #e5d9c3;
   font-family: "Merriweather", serif;
   cursor: pointer;
+  font-size: 14px;
+}
+
+/* Adaptive size */
+@media screen and (min-width: 1270px) {
+  .messages {
+    padding-right: 10vw;
+  }
 }

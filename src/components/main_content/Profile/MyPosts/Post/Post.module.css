@@ -9,6 +9,9 @@
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border-radius: 15px;
   box-sizing: border-box;
+  font-size: 16px;
+  background-color: #ece0c9;
+  border: 2px solid #382a2e;
 }
 
 .userInfo {

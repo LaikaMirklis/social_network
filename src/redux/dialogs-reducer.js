@@ -43,7 +43,7 @@ let initialState = {
   newMessageBody: "",
 };
 
-export const dialogsReducer = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
       return {

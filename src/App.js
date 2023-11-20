@@ -9,6 +9,7 @@ import DialogsContainer from "./components/main_content/Dialogs/DialogsContainer
 import News from "./components/main_content/News/News";
 import Music from "./components/main_content/Music/Music";
 import Settings from "./components/main_content/Settings/Settings";
+import UsersContainer from "./components/main_content/Users/UsersContainer";
 
 const App = (props) => {
   const { t } = useTranslation(); //without it button langChange don`t switch text (Ukr-Eng)
@@ -23,6 +24,7 @@ const App = (props) => {
           <Route path="/dialogs/" element={<DialogsContainer />} />
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />
+          <Route path="/users" element={<UsersContainer />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>

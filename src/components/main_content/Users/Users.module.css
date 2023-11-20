@@ -1,0 +1,47 @@
+.findUsers {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.findUsers h3 {
+  color: #382a2e;
+  align-self: stretch;
+  border-bottom: 3px solid #382a2e;
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: 20px;
+}
+
+.users {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  grid-auto-flow: row;
+}
+
+.showMoreButtonWrapper {
+  padding: 20px 0 0 0;
+  justify-content: flex-end;
+}
+
+.showMoreButton {
+  padding: 8px 16px;
+  background-color: #382a2e;
+  color: #e5d9c3;
+  font-family: "Merriweather", serif;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Adaptive size */
+@media screen and (min-width: 1270px) {
+  .findUsers {
+    padding-right: 10vw;
+  }
+  .users {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

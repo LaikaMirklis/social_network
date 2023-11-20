@@ -1,9 +1,10 @@
+import styles from "./Profile.module.css"
 import MyPostsContainer from "./MyPosts/MyPostsContainer"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
     return (
-        <div>
+        <div className={styles.profileWrapper}>
             <ProfileInfo />
             <MyPostsContainer />
         </div>

@@ -1,18 +1,57 @@
 .nav {
   grid-area: navbar;
   background-color: #ece0c9;
-  padding: 20px;
-  border-right: 4px solid #382a2e;
+  /* change background-color */
+  padding: 0 20px;
+  border-right: 8px double #382a2e;
+  font-weight: 400;
+}
+
+.item p {
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
 }
 
 .item a {
   text-decoration: none;
   color: #382a2e;
   font-size: 18px;
+  display: flex;
+  padding: 0 0 10px 0;
 }
 
 .item a:hover,
 .item a:active,
 .item a:focus {
   color: #af7557;
+}
+
+#users.item {
+  padding: 30px 0;
+}
+
+.icon {
+  align-self: center;
+}
+
+.hideIconWrapper {
+  height: 9vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 18px;
+}
+
+.hideIcon {
+  color: #382a2e;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Adaptive size */
+@media screen and (min-width: 1270px) {
+  .nav {
+    padding-left: 10vw;
+  }
 }
