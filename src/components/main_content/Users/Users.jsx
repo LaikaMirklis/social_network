@@ -5,11 +5,14 @@ import axios from 'axios';
 const Users = (props) => {
     const t = props.t;
 
-    if (props.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items)
-        })
+    let getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
     }
+
 
     let usersElements = props.users.map(u =>
         <User
@@ -26,6 +29,7 @@ const Users = (props) => {
 
     return (
         <div className={styles.findUsers}>
+            <button onClick={getUsers} className={styles.getUsersButton}>Get users</button>
             <h3>{t('usersPage.users')}</h3>
             <div className={styles.users}>
                 {usersElements}
