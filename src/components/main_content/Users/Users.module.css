@@ -13,6 +13,7 @@
   text-align: center;
   margin: 0 0 20px 0;
   font-size: 20px;
+  width: 100%;
 }
 
 .users {
@@ -20,6 +21,8 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
   grid-auto-flow: row;
+  width: 100%;
+  justify-items: center;
 }
 
 .showMoreButtonWrapper {
