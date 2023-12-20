@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './Users.module.css'
 import User from './User/User';
+import { useTranslation } from 'react-i18next';
 
 const Users = (props) => {
+    const { t } = useTranslation();
 
     const renderPageNumber = (pageNumber) => {
         switch (pageNumber) {
@@ -59,9 +61,6 @@ const Users = (props) => {
         return pages.map(p => renderPageNumber(p.number))
 
     }
-
-
-    const t = props.t;
 
     let renderedPageControl = renderPagesControl();
 
