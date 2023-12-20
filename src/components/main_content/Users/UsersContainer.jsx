@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Users from './Users';
+import UsersAPIComponent from './UsersAPIComponent';
 import { useTranslation } from 'react-i18next';
 import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC } from '../../../redux/users-reducer';
 
@@ -7,7 +7,7 @@ import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowA
 const UsersContainer = (props) => {
     const { t } = useTranslation();
 
-    return <Users {...props} t={t} />;
+    return <UsersAPIComponent {...props} t={t} />;
 };
 
 const mapStateToProps = (state) => {
