@@ -23,30 +23,33 @@
   grid-auto-flow: row;
   width: 100%;
   justify-items: center;
+  margin: 20px 0;
 }
 
-.showMoreButtonWrapper {
-  padding: 20px 0 0 0;
-  justify-content: flex-end;
+.pages,
+.selectedPage,
+.ellipsis {
+  margin: 0 2px;
+  padding: 2px 8px;
+  font-weight: bold;
+  border: 2px solid #382a2e;
+  border-radius: 50%;
+  cursor: default;
 }
 
-.showMoreButton {
-  padding: 8px 16px;
-  background-color: #382a2e;
-  color: #e5d9c3;
-  font-family: "Merriweather", serif;
+.pages {
   cursor: pointer;
-  font-size: 18px;
 }
 
-.getUsersButton {
-  padding: 8px 16px;
+.pages:hover,
+.pages:focus {
+  color: #af7557;
+  border: 2px solid #af7557;
+}
+
+.selectedPage {
+  color: #ece0c9;
   background-color: #382a2e;
-  color: #e5d9c3;
-  font-family: "Merriweather", serif;
-  cursor: pointer;
-  font-size: 18px;
-  margin-bottom: 20px;
 }
 
 /* Adaptive size */
