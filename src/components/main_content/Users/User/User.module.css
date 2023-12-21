@@ -20,6 +20,13 @@
   width: 100px;
 }
 
+.realUserImg {
+  margin-bottom: 10px;
+  clip-path: circle(50% at 50% 50%);
+  border: 3px solid #382a2e;
+  border-radius: 50%;
+}
+
 .followedButton {
   padding: 4px;
   background-color: #382a2e;

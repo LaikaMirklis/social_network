@@ -1,5 +1,5 @@
 import styles from './User.module.css'
-import userPhoto from '../../../../assets/user.png'
+import userPhoto from '../../../../assets/images/user.png'
 
 const User = (props) => {
     const t = props.t;
@@ -17,7 +17,9 @@ const User = (props) => {
             <div className={styles.userImg} >
                 <img src={props.photos.small != null
                     ? props.photos.small
-                    : userPhoto} alt="user_image" />
+                    : userPhoto}
+                    className={props.photos.small && styles.realUserImg}
+                    alt="user_image" />
                 {props.followed
                     ? <button onClick={unfollow} className={styles.followedButton}> {t('usersPage.unfollow')}</button>
                     : <button onClick={follow} className={styles.followedButton}> {t('usersPage.follow')}</button>}

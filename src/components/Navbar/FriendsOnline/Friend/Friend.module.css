@@ -12,4 +12,6 @@
   margin-bottom: 5px;
   width: 35px;
   clip-path: circle(50% at 50% 50%);
+  border: 1px solid #382a2e;
+  border-radius: 50%;
 }
