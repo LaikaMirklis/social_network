@@ -1,4 +1,4 @@
-import { sendMessageCreator, updateNewMessageBodyCreator } from "../../../redux/dialogs-reducer";
+import { sendMessage, updateNewMessageBody } from "../../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -15,15 +15,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        updateNewMessageBody: (body) => {
-            dispatch(updateNewMessageBodyCreator(body));
-        },
-        sendMessage: () => {
-            dispatch(sendMessageCreator());
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);
+export default connect(mapStateToProps, { updateNewMessageBody, sendMessage })(DialogsContainer);
