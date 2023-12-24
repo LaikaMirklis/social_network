@@ -1,0 +1,28 @@
+.background {
+  box-sizing: border-box;
+  width: calc(100% - 16px);
+  height: 200px;
+
+  /* зробити щоб це налаштовувалось користувачем */
+  object-fit: cover;
+  object-position: 0 70%;
+  border: 6px double #382a2e;
+  margin-left: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.avatar {
+  width: 120px;
+  clip-path: circle(50% at 50% 50%);
+  border: 2px solid #382a2e;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 140px;
+  margin-left: 10px;
+}

@@ -1,19 +1,39 @@
 import styles from "./ProfileInfo.module.css"
 
 const ProfileInfo = (props) => {
+    debugger
     return (
-        <div>
-            <img
-                src="https://cdnb.artstation.com/p/assets/images/images/046/499/745/large/l-y-hyun-fantasy-forest-secret-village.jpg?1645264603"
-                className={styles.background}
-                alt="background"
-            />
-            <div className={styles.descriptionBlock}>
-                <img src='https://i.pinimg.com/564x/b1/c9/d6/b1c9d65cdac7236a40ee4f3e871e622a.jpg' className={styles.avatar} alt="avatar" />
-                <p>ava + description</p>
+        <div className={styles.profileInfo}>
+            <div className={styles.column}>
+                <div className={styles.userPhotos}>
+                    <img src={props.photos.large} alt={props.fullName} />
+                </div>
+                <h2>{props.fullName}</h2>
+                <p>{props.aboutMe}</p>
+            </div>
+            <div className={styles.column}>
+                {props.lookingForAJob && (
+                    <div>
+                        <p>Looking for a job: Yes</p>
+                        <p>Job Description: {props.lookingForAJobDescription}</p>
+                    </div>
+                )}
+                <div className={styles.contacts}>
+                    <h3>Contacts:</h3>
+                    <ul>
+                        {Object.entries(props.contacts).map(([key, value]) => (
+                            value && (
+                                <li key={key}>
+                                    <strong>{key}:</strong>{' '}
+                                    <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>
+                                </li>
+                            )
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ProfileInfo;

@@ -11,7 +11,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-.avatar {
+.userPhoto {
   width: 120px;
   clip-path: circle(50% at 50% 50%);
   border: 2px solid #382a2e;
@@ -19,10 +19,72 @@
   margin-right: 20px;
 }
 
-.descriptionBlock {
+.photoWrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 140px;
   margin-left: 10px;
+}
+
+/* ProfileInfo.module.css */
+.profileInfo {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+}
+
+.userPhotos img {
+  width: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.fullName {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.aboutMe {
+  font-size: 16px;
+  color: #666;
+}
+
+.jobInfo {
+  margin-bottom: 20px;
+}
+
+.contacts {
+  margin-top: 20px;
+}
+
+.contacts h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.contacts ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contacts li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #666;
+}
+
+.contacts a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contacts a:hover {
+  text-decoration: underline;
 }
