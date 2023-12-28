@@ -10,7 +10,6 @@ import News from "./components/main_content/News/News";
 import Music from "./components/main_content/Music/Music";
 import Settings from "./components/main_content/Settings/Settings";
 import UsersContainer from "./components/main_content/Users/UsersContainer";
-import Profile from "./components/main_content/Profile/Profile";
 
 const App = (props) => {
   const { t } = useTranslation(); //without it button langChange don`t switch text (Ukr-Eng)
@@ -21,8 +20,7 @@ const App = (props) => {
       <NavbarContainer />
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/profile/" element={<Profile />} />
-          <Route path="/profile/:id" element={<ProfileContainer />} />
+          <Route path="/profile/:userId?" element={<ProfileContainer />} />
           <Route path="/dialogs/" element={<DialogsContainer />} />
           <Route path="/news" element={<News />} />
           <Route path="/music" element={<Music />} />

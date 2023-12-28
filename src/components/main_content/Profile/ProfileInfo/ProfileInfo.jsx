@@ -1,21 +1,25 @@
 import styles from "./ProfileInfo.module.css"
+import userPhoto from '../../../../assets/images/user.png'
 
 const ProfileInfo = (props) => {
-    debugger
     return (
         <div className={styles.profileInfo}>
-            <div className={styles.column}>
-                <div className={styles.userPhotos}>
-                    <img src={props.photos.large} alt={props.fullName} />
+            <div className={styles.column1}>
+                <div className={styles.userPhoto}>
+                    <img src={props.photos.large != null
+                        ? props.photos.large
+                        : userPhoto}
+                        className={props.photos.large && styles.realUserPhoto}
+                        alt={props.fullName} />
                 </div>
-                <h2>{props.fullName}</h2>
-                <p>{props.aboutMe}</p>
+                <h2 className={styles.fullName}>{props.fullName}</h2>
+                <p className={styles.aboutMe}>{props.aboutMe}</p>
             </div>
-            <div className={styles.column}>
+            <div className={styles.column2}>
                 {props.lookingForAJob && (
-                    <div>
-                        <p>Looking for a job: Yes</p>
-                        <p>Job Description: {props.lookingForAJobDescription}</p>
+                    <div className={styles.jobInfo}>
+                        <p><strong>Looking for a job:</strong> Yes</p>
+                        <p><strong>Job Description: </strong>{props.lookingForAJobDescription}</p>
                     </div>
                 )}
                 <div className={styles.contacts}>

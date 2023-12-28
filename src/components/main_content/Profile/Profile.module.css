@@ -1,5 +1,7 @@
 .profileWrapper {
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Adaptive size */

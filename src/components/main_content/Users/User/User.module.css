@@ -60,4 +60,8 @@
 
 .status {
   font-weight: 500;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 160px;
 }
