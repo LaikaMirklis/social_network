@@ -1,15 +1,11 @@
 .app-wrapper {
   margin: 0 auto;
   display: grid;
-  width: 1000px;
   grid-template-areas:
     "navbar header header"
     "navbar content content";
   grid-template-rows: 9vh 1fr;
   grid-template-columns: auto 1fr;
-  width: 100%;
-  max-width: 100vw;
-  grid-gap: 0px;
   font-family: "Merriweather", serif;
   min-height: 100vh;
 }
@@ -18,5 +14,3 @@
   grid-area: content;
   background-color: #f1e8d7;
 }
-
-/* #ECE0C9 */

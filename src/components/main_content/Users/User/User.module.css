@@ -9,22 +9,19 @@
   width: 80%;
 }
 
-.user img {
-  width: 80px;
-}
-
-.userImg {
+.leftBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100px;
 }
 
-.realUserImg {
+.userPhoto {
   margin-bottom: 10px;
   clip-path: circle(50% at 50% 50%);
   border: 3px solid #382a2e;
   border-radius: 50%;
+  width: 80px;
 }
 
 .followedButton {

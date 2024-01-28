@@ -19,6 +19,9 @@ export const eng = {
     myPosts: "My posts",
     textArea: "What's happening?",
     addPostButton: "Add post",
+    jobLooking: "Looking for a job",
+    jobDescription: "Job Description:",
+    contacts: "Contacts:",
   },
 
   usersPage: {
@@ -26,5 +29,11 @@ export const eng = {
     follow: "Follow",
     unfollow: "Unfollow",
     showMoreButton: "Show more",
+  },
+  notFoundPage: {
+    errorCode: "Error 404",
+    errorDescription: "Page Not Found",
+    errorText:
+      "Unfortunately, your journey has encountered a 404 error page. Perhaps dwarves, while digging a tunnel, stumbled upon a broken link. Try returning to the main path or embark on a quest to find another entrance to this enchanted web forest. ",
   },
 };

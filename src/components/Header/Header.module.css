@@ -7,11 +7,18 @@
   justify-content: space-between;
   padding: 20px 20px 20px 10px;
   font-size: 16px;
-  z-index: 3;
+  z-index: 100;
+  min-height: 40px;
 }
 
-.header img {
+.leftBlock {
+  display: flex;
+  align-items: center;
+}
+
+.leftBlock img {
   width: 60px;
+  margin-right: 10px;
 }
 
 /* Adaptive size */
@@ -19,4 +26,44 @@
   .header {
     padding-right: 10vw;
   }
+}
+
+.loginBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #382a2e;
+  width: 6em;
+}
+
+.loginBlock a {
+  text-decoration: none;
+  color: #382a2e;
+}
+
+.loginBlock a:hover,
+.loginBlock a:active,
+.loginBlock a:focus {
+  color: #af7557;
+}
+
+.loginBlock p {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 4px 0 0 0;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+
+.loginBlock img {
+  width: 40px;
+}
+
+.userPhoto {
+  clip-path: circle(50% at 50% 50%);
+  border: 3px solid #382a2e;
+  border-radius: 50%;
 }

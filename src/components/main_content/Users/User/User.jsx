@@ -1,5 +1,5 @@
 import styles from './User.module.css'
-import userPhoto from '../../../../assets/images/user.png'
+import defaultPhoto from '../../../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
@@ -15,12 +15,12 @@ const User = (props) => {
 
     return (
         <div className={styles.user} >
-            <div className={styles.userImg}>
+            <div className={styles.leftBlock}>
                 <NavLink to={'/profile/' + props.id} >
                     <img src={props.photos.small != null
                         ? props.photos.small
-                        : userPhoto}
-                        className={props.photos.small && styles.realUserImg}
+                        : defaultPhoto}
+                        className={styles.userPhoto}
                         alt="user_image" />
                 </NavLink>
                 {props.followed

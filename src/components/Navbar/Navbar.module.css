@@ -1,7 +1,6 @@
 .nav {
   grid-area: navbar;
   background-color: #ece0c9;
-  /* change background-color */
   padding: 0 20px;
   border-right: 8px double #382a2e;
   font-weight: 400;
