@@ -20,7 +20,7 @@ export const eng = {
     textArea: "What's happening?",
     addPostButton: "Add post",
     jobLooking: "Looking for a job",
-    jobDescription: "Job Description:",
+    jobDescription: "Job Description: ",
     contacts: "Contacts:",
   },
 

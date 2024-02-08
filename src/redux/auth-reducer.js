@@ -7,8 +7,7 @@ let initialState = {
   email: null,
   isFetching: false,
   isAuth: false,
-  userPhoto:
-    "https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png",
+  userPhoto: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -20,7 +19,6 @@ const authReducer = (state = initialState, action) => {
         isAuth: true,
       };
     case SET_USER_PHOTO:
-      debugger;
       return {
         ...state,
         userPhoto: action.userPhoto,

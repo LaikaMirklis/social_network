@@ -20,7 +20,7 @@ export const ukr = {
     textArea: "Що відбувається?",
     addPostButton: "Додати пост",
     jobLooking: "Шукаю роботу",
-    jobDescription: "Посадова характеристика: ",
+    jobDescription: "Опис роботи: ",
     contacts: "Контакти:",
   },
 
