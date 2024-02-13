@@ -17,16 +17,25 @@ const User = (props) => {
                         alt="user_image" />
                 </NavLink>
                 {props.followed
-                    ? <button onClick={() => {
-                        followAPI.unfollowUser(props.id).then(data => {
-                            if (data.resultCode === 0) props.unfollow(props.id)
-                        })
-                    }} className={styles.followedButton}> {t('usersPage.unfollow')}</button>
-                    : <button onClick={() => {
-                        followAPI.followUser(props.id).then(data => {
-                            if (data.resultCode === 0) props.follow(props.id)
-                        })
-                    }} className={styles.followedButton}> {t('usersPage.follow')}</button>}
+                    ? <button disabled={props.followingInProgress.some(id => id === props.id)}
+                        onClick={() => {
+                            props.toggleFollowingProgress(true, props.id)
+                            followAPI.unfollowUser(props.id).then(data => {
+                                if (data.resultCode === 0) props.unfollow(props.id)
+                                props.toggleFollowingProgress(false, props.id)
+                            })
+                        }}
+                        className={styles.followedButton}> {t('usersPage.unfollow')}</button>
+                    : <button disabled={props.followingInProgress.some(id => id === props.id)}
+                        onClick={() => {
+                            props.toggleFollowingProgress(true, props.id)
+                            followAPI.followUser(props.id).then(data => {
+                                if (data.resultCode === 0) props.follow(props.id)
+                                props.toggleFollowingProgress(false, props.id)
+                            })
+                        }}
+                        className={styles.followedButton}> {t('usersPage.follow')}</button>
+                }
             </div>
 
             <div className={styles.userInfo}>

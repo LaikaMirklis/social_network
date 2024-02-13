@@ -33,6 +33,11 @@
   font-size: 14px;
 }
 
+.followedButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .userInfo {
   display: flex;
   flex-direction: column;
