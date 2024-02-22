@@ -1,3 +1,5 @@
+import { authAPI, usersAPI } from "../api/api";
+
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_USER_PHOTO = "SET_USER_PHOTO";
 
@@ -28,13 +30,35 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const setAuthUserData = (userId, login, email) => ({
+const setAuthUserData = (userId, login, email) => ({
   type: SET_USER_DATA,
   data: { userId, login, email },
 });
-export const setUserPhoto = (userPhoto) => ({
+const setUserPhoto = (userPhoto) => ({
   type: SET_USER_PHOTO,
   userPhoto,
 });
+
+export const getAuthUserData = (userId) => {
+  return (dispatch) => {
+    authAPI
+      .me()
+      .then((data) => {
+        if (data.resultCode === 0) {
+          let { id, login, email } = data.data;
+          dispatch(setAuthUserData(id, login, email));
+          if (userId) {
+            return usersAPI.getProfile(userId);
+          }
+        }
+      })
+      .then((data) => {
+        if (data) dispatch(setUserPhoto(data.photos.small));
+      })
+      .catch((error) => {
+        console.error("Axios error:", error);
+      });
+  };
+};
 
 export default authReducer;

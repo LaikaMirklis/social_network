@@ -1,7 +1,6 @@
 import styles from './User.module.css'
 import defaultPhoto from '../../../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
-import { followAPI } from '../../../../api/api';
 
 const User = (props) => {
     const t = props.t;
@@ -18,22 +17,10 @@ const User = (props) => {
                 </NavLink>
                 {props.followed
                     ? <button disabled={props.followingInProgress.some(id => id === props.id)}
-                        onClick={() => {
-                            props.toggleFollowingProgress(true, props.id)
-                            followAPI.unfollowUser(props.id).then(data => {
-                                if (data.resultCode === 0) props.unfollow(props.id)
-                                props.toggleFollowingProgress(false, props.id)
-                            })
-                        }}
+                        onClick={() => props.unfollow(props.id)}
                         className={styles.followedButton}> {t('usersPage.unfollow')}</button>
                     : <button disabled={props.followingInProgress.some(id => id === props.id)}
-                        onClick={() => {
-                            props.toggleFollowingProgress(true, props.id)
-                            followAPI.followUser(props.id).then(data => {
-                                if (data.resultCode === 0) props.follow(props.id)
-                                props.toggleFollowingProgress(false, props.id)
-                            })
-                        }}
+                        onClick={() => props.follow(props.id)}
                         className={styles.followedButton}> {t('usersPage.follow')}</button>
                 }
             </div>
