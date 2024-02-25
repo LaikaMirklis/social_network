@@ -4,15 +4,17 @@ import FriendsOnline from './FriendsOnline/FriendsOnline';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faEnvelope, faGear, faHouse, faMagnifyingGlass, faMusic, faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = (props) => {
+    const { t } = useTranslation();
+
     const [hideText, setHideText] = useState(false);
 
     const toggleTextVisibility = () => {
         setHideText(!hideText);
     };
 
-    const t = props.t;
     const stateStyle = { display: hideText ? 'none' : 'block' };
 
     return (

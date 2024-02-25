@@ -1,17 +1,19 @@
 import { sendMessage, updateNewMessageBody } from "../../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { Navigate } from "react-router-dom";
 
 const DialogsContainer = (props) => {
-    const { t } = useTranslation();
+    document.title = "Dialogs"
 
-    return <Dialogs {...props} t={t} />;
+    if (!props.isAuth) return <Navigate to="/login" />
+    return <Dialogs {...props} />;
 };
 
 let mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 

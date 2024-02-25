@@ -7,6 +7,8 @@ import Preloader from '../../common/Preloader/Preloader';
 class UsersContainer extends React.Component {
 
     componentDidMount() {
+        document.title = "Users"
+
         this.props.getUsers(this.props.pageSize, this.props.currentPageNumber)
     }
 

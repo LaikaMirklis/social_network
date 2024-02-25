@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 
 
 const NotFound = () => {
+    document.title = "404 Not found"
+
     const { t } = useTranslation();
 
     return <div className="errorWrapper" >

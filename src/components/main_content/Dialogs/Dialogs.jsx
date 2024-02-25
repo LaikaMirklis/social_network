@@ -1,9 +1,10 @@
 import styles from './Dialogs.module.css'
 import Message from './Messages/Message';
 import DialogItem from './DialogItem/DialogItem';
+import { useTranslation } from 'react-i18next';
 
 const Dialogs = (props) => {
-    let t = props.t;
+    const { t } = useTranslation();
 
     let dialogsElements = props.dialogsPage.dialogs.map(d =>
         <DialogItem
