@@ -2,11 +2,9 @@ import "./NotFound.css";
 import errorImg from '../../../assets/images/Img404.png'
 import { useTranslation } from "react-i18next";
 
-
-const NotFound = () => {
-    document.title = "404 Not found"
-
+const NotFound = (props) => {
     const { t } = useTranslation();
+    document.title = t('pageTitles.notFound')
 
     return <div className="errorWrapper" >
         <div className="errorTextWrapper">

@@ -28,12 +28,10 @@ const User = (props) => {
             <div className={styles.userInfo}>
                 <div className={styles.baseInfo}>
                     <div>{props.name}</div>
-                    <div className={styles.location} >
+                    {/* <div className={styles.location} >
                         <div>Country,</div>
                         <div>city</div>
-                        {/* <div>{props.location.country},</div>
-                        <div>{props.location.city}</div> */}
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.status}>{props.status}</div>
 

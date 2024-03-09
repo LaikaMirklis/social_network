@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import styles from './News.module.css'
 
 const News = (props) => {
-    document.title = "News"
+    const { t } = useTranslation();
+    document.title = t('pageTitles.news')
 
     return (
         <div></div>

@@ -3,42 +3,46 @@ import Profile from "./Profile";
 import { connect } from 'react-redux';
 import { getUserProfile } from "../../../redux/profile-reducer";
 import Preloader from "../../common/Preloader/Preloader";
-import { withRouter } from "../../common/functions/withRouter";
-import { Navigate } from "react-router-dom";
+import { withRouter } from "../../../hoc/withRouter";
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+import { compose } from 'redux'
+import { withTranslation } from "react-i18next";
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        document.title = "Profile"
+        document.title = this.props.t('pageTitles.profile')
 
         let userId = this.props.match.params.userId;
         if (!userId && this.props.userId) userId = this.props.userId;
-        else if (!userId) userId = 2
-        this.props.getUserProfile(userId);
+        if (userId) this.props.getUserProfile(userId);
+    }
+
+    componentWillUnmount() {
+        this.props.getUserProfile(0);
     }
 
     render() {
-        if (!this.props.match.params.userId && !this.props.isAuth)
-            return <Navigate to="/login" />
+        if (!this.props.profile) return <Preloader />
 
         if (!this.props.match.params.userId && this.props.profile.userId !== this.props.userId) {
+            this.props.getUserProfile(0); // to see Preloader
             this.props.getUserProfile(this.props.userId)
-            return <Profile {...this.props.profile} />
+            return <Profile {...this.props.profile} t={this.props.t} />
         }
 
-        if (!this.props.profile)
-            return <Preloader />
-
-        return <Profile {...this.props.profile} />
+        return <Profile {...this.props.profile} t={this.props.t} />
     }
 }
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     userId: state.auth.userId,
-    isAuth: state.auth.isAuth
 });
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, { getUserProfile })(WithUrlDataContainerComponent);
+export default compose(
+    connect(mapStateToProps, { getUserProfile }),
+    withRouter,
+    withAuthRedirect,
+    withTranslation()
+)(ProfileContainer);

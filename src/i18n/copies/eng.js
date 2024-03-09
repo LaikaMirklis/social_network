@@ -1,4 +1,15 @@
 export const eng = {
+  pageTitles: {
+    profile: "Profile",
+    dialogs: "Dialogs",
+    news: "News",
+    music: "Music",
+    users: "Find users",
+    settings: "Settings",
+    notFound: "404 Not found",
+    login: "Login",
+  },
+
   navbar: {
     profile: "Profile",
     messages: "Message",
@@ -30,10 +41,15 @@ export const eng = {
     unfollow: "Unfollow",
     showMoreButton: "Show more",
   },
+
   notFoundPage: {
     errorCode: "Error 404",
     errorDescription: "Page Not Found",
     errorText:
       "Unfortunately, your journey has encountered a 404 error page. Perhaps dwarves, while digging a tunnel, stumbled upon a broken link. Try returning to the main path or embark on a quest to find another entrance to this enchanted web forest. ",
+  },
+
+  loginPage: {
+    message: "You are not authorized",
   },
 };

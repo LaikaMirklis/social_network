@@ -1,7 +1,10 @@
+import { useTranslation } from "react-i18next";
 import styles from './Settings.module.css'
 
+
 const Settings = (props) => {
-    document.title = "Settings"
+    const { t } = useTranslation();
+    document.title = t('pageTitles.settings')
 
     return (
         <div></div>

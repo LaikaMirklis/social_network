@@ -5,10 +5,8 @@ const NavbarContainer = (props) => {
     return <Navbar {...props} />;
 };
 
-let mapStateToProps = (state) => {
-    return {
-        sidebar: state.sidebar
-    }
-}
+let mapStateToProps = (state) => ({
+    sidebar: state.sidebar
+})
 
 export default connect(mapStateToProps)(NavbarContainer);

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import styles from './Music.module.css'
 
 const Music = (props) => {
-    document.title = "Music"
+    const { t } = useTranslation();
+    document.title = t('pageTitles.music')
 
     return (
         <div></div>

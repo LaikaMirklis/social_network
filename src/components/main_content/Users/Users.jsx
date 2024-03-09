@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './Users.module.css'
 import User from './User/User';
-import { useTranslation } from 'react-i18next';
 
 const Users = (props) => {
-    const { t } = useTranslation();
+    const t = props.t
 
     const renderPageNumber = (pageNumber) => {
         switch (pageNumber) {

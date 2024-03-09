@@ -1,9 +1,8 @@
 import styles from "./Profile.module.css"
 import defaultPhoto from '../../../assets/images/user.png'
-import { useTranslation } from "react-i18next";
 
 const Profile = (props) => {
-    const { t } = useTranslation();
+    const t = props.t;
 
     return (
         <div className={styles.profileWrapper}>

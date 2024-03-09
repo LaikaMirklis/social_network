@@ -22,9 +22,12 @@ const setUserProfile = (profile) => ({
 
 export const getUserProfile = (userId) => {
   return (dispatch) => {
-    usersAPI.getProfile(userId).then((data) => {
-      dispatch(setUserProfile(data));
-    });
+    if (userId === 0) dispatch(setUserProfile(null));
+    else {
+      usersAPI.getProfile(userId).then((data) => {
+        dispatch(setUserProfile(data));
+      });
+    }
   };
 };
 
