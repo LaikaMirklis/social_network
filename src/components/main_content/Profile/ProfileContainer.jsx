@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from 'react-redux';
-import { getUserProfile } from "../../../redux/profile-reducer";
+import { changeUserStatus, getUserProfile, getUserStatus } from "../../../redux/profile-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import { withRouter } from "../../../hoc/withRouter";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
@@ -15,33 +15,47 @@ class ProfileContainer extends React.Component {
 
         let userId = this.props.match.params.userId;
         if (!userId && this.props.userId) userId = this.props.userId;
-        if (userId) this.props.getUserProfile(userId);
+        if (userId) {
+            this.props.getUserProfile(userId);
+            this.props.getUserStatus(userId)
+        }
     }
 
     componentWillUnmount() {
         this.props.getUserProfile(0);
     }
 
+    compareIds() {
+        if (this.props.profile) return this.props.profile.userId === this.props.userId
+    }
+
+    getProfileWithProps() {
+        return <Profile {...this.props.profile} t={this.props.t} changeUserStatus={this.props.changeUserStatus}
+            status={this.props.status} isAuthUserProfile={this.compareIds()} userId={this.props.userId} />
+    }
+
     render() {
         if (!this.props.profile) return <Preloader />
 
-        if (!this.props.match.params.userId && this.props.profile.userId !== this.props.userId) {
+        if (!this.props.match.params.userId && !this.compareIds()) {
             this.props.getUserProfile(0); // to see Preloader
             this.props.getUserProfile(this.props.userId)
-            return <Profile {...this.props.profile} t={this.props.t} />
+            this.props.getUserStatus(this.props.userId)
+            return this.getProfileWithProps()
         }
 
-        return <Profile {...this.props.profile} t={this.props.t} />
+        return this.getProfileWithProps()
     }
 }
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     userId: state.auth.userId,
+    status: state.profilePage.status,
 });
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile }),
+    connect(mapStateToProps, { getUserProfile, getUserStatus, changeUserStatus }),
     withRouter,
     withAuthRedirect,
     withTranslation()

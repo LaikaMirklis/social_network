@@ -30,6 +30,8 @@ export const eng = {
     myPosts: "My posts",
     textArea: "What's happening?",
     addPostButton: "Add post",
+    statusPlaceholder: "Share what's on your mind...",
+    aboutMe: "About me:",
     jobLooking: "Looking for a job",
     jobDescription: "Job Description: ",
     contacts: "Contacts:",

@@ -30,6 +30,8 @@ export const ukr = {
     myPosts: "Мої пости",
     textArea: "Що відбувається?",
     addPostButton: "Додати пост",
+    statusPlaceholder: "Поділіться своїми думками...",
+    aboutMe: "Про мене:",
     jobLooking: "Шукаю роботу",
     jobDescription: "Опис роботи: ",
     contacts: "Контакти:",

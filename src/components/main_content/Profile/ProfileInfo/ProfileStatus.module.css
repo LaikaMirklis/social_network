@@ -1,0 +1,40 @@
+.statusBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+}
+
+.statusBlock span {
+  color: #695c58;
+  font-size: 16px;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusBlock textarea {
+  background-color: #f6f0e4;
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  color: #695c58;
+  border: 2px solid #695c58;
+  border-radius: 4px;
+  text-align: center;
+  resize: vertical;
+  min-height: 40px;
+  max-height: max-content;
+}
+
+.statusBlock textarea {
+  outline: none;
+}
+
+.inputCounter {
+  font-size: 14px;
+  color: #695c58;
+  align-self: flex-end;
+  padding-top: 2px;
+}
