@@ -11,7 +11,6 @@ class ProfileStatus extends React.Component {
 
     activateEditMode = () => {
         this.setState({ editMode: true })
-
     }
 
     deactivateEditMode = (e) => {
@@ -58,7 +57,7 @@ class ProfileStatus extends React.Component {
                         <div className={styles.statusBlock}>
                             <textarea type="text"
                                 maxLength={this.state.maxLength}
-                                onBlur={this.deactivateEditMode}
+                                onBlur={this.deactivateEditMode.bind(this)}
                                 autoFocus={true}
                                 value={this.state.status}
                                 onChange={this.changeLocalStatus}
