@@ -1,3 +1,4 @@
+import Preloader from "../../../common/Preloader/Preloader";
 import styles from "./ProfileStatus.module.css"
 import React from "react";
 
@@ -5,7 +6,7 @@ class ProfileStatus extends React.Component {
     state = {
         editMode: false,
         status: this.props.status,
-        characterCount: this.props.status ? this.props.status.length : null,
+        characterCount: this.props.status ? this.props.status.length : 0,
         maxLength: 300
     }
 
@@ -14,27 +15,33 @@ class ProfileStatus extends React.Component {
     }
 
     deactivateEditMode = (e) => {
-        let statusBody = e.target.value;
-        if (this.props.status !== e.target.value) this.props.changeUserStatus(statusBody);
-        this.setState({ editMode: false })
+        let inputValueTrimmed = e.target.value.trim();
+        if (this.props.status.trim() !== inputValueTrimmed)
+            this.props.updateUserStatus(inputValueTrimmed);
+
+        this.setState({
+            editMode: false,
+            status: inputValueTrimmed,
+            characterCount: inputValueTrimmed.length
+        })
     }
 
     getDisplayText = () => {
-        if (!this.props.status && this.props.isAuthUserProfile) return this.props.t('profilePage.statusPlaceholder')
-        else return this.props.status
+        if (!this.props.status && this.props.isAuthUserProfile)
+            return this.props.t('profilePage.statusPlaceholder')
+        else
+            return this.state.status
     }
 
-    changeLocalStatus = (e) => {
-        let statusBody = e.target.value;
-        this.setState({ status: statusBody });
-        this.trackCharacterInput(statusBody)
+    onStatusChange = (e) => {
+        let inputValue = e.target.value;
+        this.setState({ status: inputValue });
+        this.trackCharacterInput(inputValue);
     }
 
-    trackCharacterInput = (statusBody) => {
-        if (statusBody) {
-            let inputLength = statusBody.length
-            this.setState({ characterCount: inputLength });
-        }
+    trackCharacterInput = (inputValue) => {
+        let inputLength = inputValue ? inputValue.length : 0;
+        this.setState({ characterCount: inputLength });
     }
 
     moveCaretAtEnd(e) {
@@ -43,32 +50,35 @@ class ProfileStatus extends React.Component {
         e.target.value = temp_value
     }
 
-
     render() {
+        if (this.props.isFetching)
+            return <div className={styles.statusBlock}>
+                <Preloader />
+            </div>
+
         return (
-            <>
+            <div className={styles.statusBlock}>
                 {!this.state.editMode &&
-                    <div className={styles.statusBlock}>
-                        <span onDoubleClick={this.props.isAuthUserProfile ? this.activateEditMode : null}>{this.getDisplayText()} </span>
-                    </div>
+                    <span onDoubleClick={this.props.isAuthUserProfile ? this.activateEditMode : null}>
+                        {this.getDisplayText()} </span>
                 }
                 {this.state.editMode &&
-                    <div className={styles.inputBlock}>
-                        <div className={styles.statusBlock}>
-                            <textarea type="text"
-                                maxLength={this.state.maxLength}
-                                onBlur={this.deactivateEditMode.bind(this)}
-                                autoFocus={true}
-                                value={this.state.status}
-                                onChange={this.changeLocalStatus}
-                                onFocus={this.moveCaretAtEnd}
-                                placeholder={this.props.t('profilePage.statusPlaceholder')}
-                            />
+                    <>
+                        <textarea type="text"
+                            maxLength={this.state.maxLength}
+                            onBlur={this.deactivateEditMode}
+                            autoFocus={true}
+                            value={this.state.status}
+                            onChange={this.onStatusChange}
+                            onFocus={this.moveCaretAtEnd}
+                            placeholder={this.props.t('profilePage.statusPlaceholder')}
+                        />
+                        <div className={styles.inputCounter}>
+                            {`${this.state.characterCount}/${this.state.maxLength}`}
                         </div>
-                        <div className={styles.inputCounter}> {`${this.state.characterCount}/${this.state.maxLength}`}</div>
-                    </div>
+                    </>
                 }
-            </>
+            </div>
         );
     }
 };

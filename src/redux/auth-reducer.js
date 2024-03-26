@@ -39,26 +39,24 @@ const setUserPhoto = (userPhoto) => ({
   userPhoto,
 });
 
-export const getAuthUserData = (userId) => {
-  return (dispatch) => {
-    authAPI
-      .me()
-      .then((data) => {
-        if (data.resultCode === 0) {
-          let { id, login, email } = data.data;
-          dispatch(setAuthUserData(id, login, email));
-          if (userId) {
-            return usersAPI.getProfile(userId);
-          }
+export const getAuthUserData = (userId) => (dispatch) => {
+  authAPI
+    .me()
+    .then((data) => {
+      if (data.resultCode === 0) {
+        let { id, login, email } = data.data;
+        dispatch(setAuthUserData(id, login, email));
+        if (userId) {
+          return usersAPI.getProfile(userId);
         }
-      })
-      .then((data) => {
-        if (data) dispatch(setUserPhoto(data.photos.small));
-      })
-      .catch((error) => {
-        console.error("Axios error:", error);
-      });
-  };
+      }
+    })
+    .then((data) => {
+      if (data) dispatch(setUserPhoto(data.photos.small));
+    })
+    .catch((error) => {
+      console.error("Axios error:", error);
+    });
 };
 
 export default authReducer;

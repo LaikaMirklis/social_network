@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from 'react-redux';
-import { changeUserStatus, getUserProfile, getUserStatus } from "../../../redux/profile-reducer";
+import { updateUserStatus, getUserProfile, getUserStatus } from "../../../redux/profile-reducer";
 import Preloader from "../../common/Preloader/Preloader";
 import { withRouter } from "../../../hoc/withRouter";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
@@ -14,9 +14,10 @@ class ProfileContainer extends React.Component {
         document.title = this.props.t('pageTitles.profile')
 
         let userId = this.props.match.params.userId;
-        if (!userId && this.props.userId) userId = this.props.userId;
+        if (!userId && this.props.userId)
+            userId = this.props.userId;
         if (userId) {
-            this.props.getUserProfile(userId);
+            this.props.getUserProfile(userId)
             this.props.getUserStatus(userId)
         }
     }
@@ -26,16 +27,18 @@ class ProfileContainer extends React.Component {
     }
 
     compareIds() {
-        if (this.props.profile) return this.props.profile.userId === this.props.userId
+        if (this.props.profile)
+            return this.props.profile.userId === this.props.userId
     }
 
     getProfileWithProps() {
-        return <Profile {...this.props.profile} t={this.props.t} changeUserStatus={this.props.changeUserStatus}
-            status={this.props.status} isAuthUserProfile={this.compareIds()} userId={this.props.userId} />
+        const { match, userId, getUserProfile, getUserStatus, ...profileProps } = this.props;
+        return <Profile  {...profileProps} isAuthUserProfile={this.compareIds()} />
     }
 
     render() {
-        if (!this.props.profile) return <Preloader />
+        if (!this.props.profile)
+            return <Preloader />
 
         if (!this.props.match.params.userId && !this.compareIds()) {
             this.props.getUserProfile(0); // to see Preloader
@@ -52,11 +55,12 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     userId: state.auth.userId,
     status: state.profilePage.status,
+    isFetching: state.profilePage.isFetching,
 });
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getUserStatus, changeUserStatus }),
+    connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
     withRouter,
-    withAuthRedirect,
+    // withAuthRedirect,
     withTranslation()
 )(ProfileContainer);

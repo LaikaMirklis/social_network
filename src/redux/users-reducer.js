@@ -86,34 +86,28 @@ const toggleFollowingProgress = (isFetching, userId) => ({
   userId,
 });
 
-export const getUsers = (pageSize, pageNumber) => {
-  return (dispatch) => {
-    dispatch(toggleIsFetching(true));
-    dispatch(setCurrentPage(pageNumber));
-    usersAPI.getUsers(pageSize, pageNumber).then((data) => {
-      dispatch(toggleIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
+export const getUsers = (pageSize, pageNumber) => (dispatch) => {
+  dispatch(toggleIsFetching(true));
+  dispatch(setCurrentPage(pageNumber));
+  usersAPI.getUsers(pageSize, pageNumber).then((data) => {
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
+  });
 };
-export const follow = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.follow(userId).then((data) => {
-      if (data.resultCode === 0) dispatch(followSuccess(userId));
-      dispatch(toggleFollowingProgress(false, userId));
-    });
-  };
+export const follow = (userId) => (dispatch) => {
+  dispatch(toggleFollowingProgress(true, userId));
+  usersAPI.follow(userId).then((data) => {
+    if (data.resultCode === 0) dispatch(followSuccess(userId));
+    dispatch(toggleFollowingProgress(false, userId));
+  });
 };
-export const unfollow = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.unfollow(userId).then((data) => {
-      if (data.resultCode === 0) dispatch(unfollowSuccess(userId));
-      dispatch(toggleFollowingProgress(false, userId));
-    });
-  };
+export const unfollow = (userId) => (dispatch) => {
+  dispatch(toggleFollowingProgress(true, userId));
+  usersAPI.unfollow(userId).then((data) => {
+    if (data.resultCode === 0) dispatch(unfollowSuccess(userId));
+    dispatch(toggleFollowingProgress(false, userId));
+  });
 };
 
 export default usersReducer;
