@@ -1,5 +1,5 @@
 import Preloader from "../../../common/Preloader/Preloader";
-import styles from "./ProfileStatus.module.css"
+import styles from "./ProfileStatus.module.css";
 import React from "react";
 
 class ProfileStatus extends React.Component {
@@ -8,6 +8,12 @@ class ProfileStatus extends React.Component {
         status: this.props.status,
         characterCount: this.props.status ? this.props.status.length : 0,
         maxLength: 300
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.status !== prevProps.status && this.props.status !== this.state.status) {
+            this.setState({ status: this.props.status })
+        }
     }
 
     activateEditMode = () => {
@@ -45,9 +51,9 @@ class ProfileStatus extends React.Component {
     }
 
     moveCaretAtEnd(e) {
-        var temp_value = e.target.value
-        e.target.value = ''
-        e.target.value = temp_value
+        var temp_value = e.target.value;
+        e.target.value = '';
+        e.target.value = temp_value;
     }
 
     render() {

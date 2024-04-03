@@ -5,20 +5,27 @@ import { updateUserStatus, getUserProfile, getUserStatus } from "../../../redux/
 import Preloader from "../../common/Preloader/Preloader";
 import { withRouter } from "../../../hoc/withRouter";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
-import { compose } from 'redux'
+import { compose } from 'redux';
 import { withTranslation } from "react-i18next";
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        document.title = this.props.t('pageTitles.profile')
+        document.title = this.props.t('pageTitles.profile');
 
         let userId = this.props.match.params.userId;
         if (!userId && this.props.userId)
             userId = this.props.userId;
         if (userId) {
-            this.props.getUserProfile(userId)
-            this.props.getUserStatus(userId)
+            this.props.getUserProfile(userId);
+            this.props.getUserStatus(userId);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.userId !== prevProps.userId) {
+            this.props.getUserProfile(this.props.userId);
+            this.props.getUserStatus(this.props.userId);
         }
     }
 
@@ -42,8 +49,8 @@ class ProfileContainer extends React.Component {
 
         if (!this.props.match.params.userId && !this.compareIds()) {
             this.props.getUserProfile(0); // to see Preloader
-            this.props.getUserProfile(this.props.userId)
-            this.props.getUserStatus(this.props.userId)
+            this.props.getUserProfile(this.props.userId);
+            this.props.getUserStatus(this.props.userId);
             return this.getProfileWithProps()
         }
 
