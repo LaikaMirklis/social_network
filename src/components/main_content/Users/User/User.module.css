@@ -1,69 +1,93 @@
 .user {
   display: flex;
-  border: 2px solid;
-  font-size: 14px;
-  padding: 20px;
+  border: 0.125em solid;
+  padding: 1.25em;
   color: #382a2e;
-  border-radius: 16px;
+  border-radius: 1em;
   background-color: #ece0c9;
-  width: 80%;
+  width: 20em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0em 0.1875em 0.375em,
+    rgba(0, 0, 0, 0.23) 0em 0.1875em 0.375em;
 }
 
 .leftBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100px;
+  width: 6.25em;
 }
 
 .userPhoto {
-  margin-bottom: 10px;
-  clip-path: circle(50% at 50% 50%);
-  border: 3px solid #382a2e;
+  margin-bottom: 0.625em;
+  border: 0.1875em solid #382a2e;
   border-radius: 50%;
-  width: 80px;
+  width: 5em;
 }
 
-.followedButton {
-  padding: 4px;
+@keyframes pressAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.followedBtn {
+  padding: 0.25em;
   background-color: #382a2e;
   color: #e5d9c3;
   font-family: "Merriweather", serif;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.875em;
+  user-select: none;
+  width: 7.5em;
+  animation: pressAnimation 0.3s ease;
 }
 
-.followedButton:disabled {
+.followedBtn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 
-.userInfo {
+.followedBtn:active {
+  transform: scale(0.95);
+}
+
+.rightBlock {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   font-weight: 600;
-  padding-left: 20px;
+  padding-left: 1.25em;
 }
 
-.baseInfo {
+.name {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 2px solid;
-}
-
-.location {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  border-bottom: 0.125em solid;
 }
 
 .status {
   font-weight: 500;
+  font-size: 0.875em;
   white-space: normal;
   text-overflow: ellipsis;
   overflow: hidden;
-  width: 160px;
+  width: 14em;
+}
+
+/* Adaptive size */
+@media screen and (1450px < width < 1690px) {
+  .user {
+    width: 16em;
+  }
+  .status {
+    width: 10em;
+  }
 }

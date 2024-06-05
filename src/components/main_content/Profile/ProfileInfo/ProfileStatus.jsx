@@ -1,6 +1,6 @@
-import Preloader from "../../../common/Preloader/Preloader";
-import styles from "./ProfileStatus.module.css";
-import React from "react";
+import Preloader from '../../../common/Preloader/Preloader';
+import styles from './ProfileStatus.module.css';
+import React from 'react';
 
 class ProfileStatus extends React.Component {
     state = {
@@ -59,7 +59,7 @@ class ProfileStatus extends React.Component {
     render() {
         if (this.props.isFetching)
             return <div className={styles.statusBlock}>
-                <Preloader />
+                <Preloader customStyles='preloaderInBlock' />
             </div>
 
         return (
@@ -70,7 +70,7 @@ class ProfileStatus extends React.Component {
                 }
                 {this.state.editMode &&
                     <>
-                        <textarea type="text"
+                        <textarea type='text'
                             maxLength={this.state.maxLength}
                             onBlur={this.deactivateEditMode}
                             autoFocus={true}

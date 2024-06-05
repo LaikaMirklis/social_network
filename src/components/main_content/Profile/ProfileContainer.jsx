@@ -1,12 +1,12 @@
-import React from "react";
-import Profile from "./Profile";
+import React from 'react';
+import Profile from './Profile';
 import { connect } from 'react-redux';
-import { updateUserStatus, getUserProfile, getUserStatus } from "../../../redux/profile-reducer";
-import Preloader from "../../common/Preloader/Preloader";
-import { withRouter } from "../../../hoc/withRouter";
-import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+import { updateUserStatus, getUserProfile, getUserStatus } from '../../../redux/profile-reducer';
+import Preloader from '../../common/Preloader/Preloader';
+import { withRouter } from '../../../hoc/withRouter';
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import { withTranslation } from "react-i18next";
+import { withTranslation } from 'react-i18next';
 
 class ProfileContainer extends React.Component {
 
@@ -68,6 +68,6 @@ const mapStateToProps = (state) => ({
 export default compose(
     connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
     withRouter,
-    // withAuthRedirect,
+    withAuthRedirect,
     withTranslation()
 )(ProfileContainer);

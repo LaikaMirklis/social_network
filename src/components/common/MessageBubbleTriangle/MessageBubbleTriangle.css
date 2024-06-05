@@ -1,0 +1,35 @@
+.triangle {
+  position: absolute;
+}
+
+.triangle div {
+  position: absolute;
+  top: 0.5px;
+  left: 0.5px;
+  clip-path: polygon(0 0, 0% 100%, 100% 0);
+  background-color: #382a2e;
+}
+
+.triangle .light {
+  background-color: #f1e8d7;
+}
+
+.triangle .first {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.triangle .second {
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+.triangle .third {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+.triangle .fourth {
+  width: 0.125rem;
+  height: 0.125rem;
+}

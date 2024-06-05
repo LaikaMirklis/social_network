@@ -1,0 +1,141 @@
+$main-dark-color: #382a2e;
+$input-border: 0.125rem solid #695c58;
+$form-border-radius: 0.5rem;
+
+.form {
+  position: absolute;
+  right: 20.8rem;
+  top: 22.3rem;
+  height: 11rem;
+  width: 13.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0.1875rem 0.375rem,
+    rgba(0, 0, 0, 0.1) 0 0.1875rem 0.375rem;
+  border: 0.1875rem solid $main-dark-color;
+  background-color: #ece0c9;
+  border-radius: $form-border-radius;
+  padding: 1rem;
+}
+
+.inputField {
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: center;
+
+  input {
+    width: 90%;
+    padding: 0.25rem;
+    border: $input-border;
+    border-radius: $form-border-radius/2;
+    &:focus,
+    &:hover {
+      border-color: $main-dark-color;
+      transform: scale(1.01);
+    }
+  }
+
+  &:has(> .showPasswordBtn) {
+    position: relative;
+
+    input {
+      width: calc(90% - 1.5rem);
+      padding-right: 1.75rem;
+    }
+  }
+}
+
+.showPasswordBtn {
+  position: absolute;
+  text-decoration: none;
+  color: $main-dark-color;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  right: 0.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:hover {
+    color: #757575;
+  }
+}
+
+.crossedEye {
+  color: #757575;
+
+  &:hover {
+    color: $main-dark-color;
+  }
+}
+
+.checkboxWrapper {
+  display: flex;
+  user-select: none;
+  margin-bottom: 0.75rem;
+
+  &:focus,
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  input {
+    appearance: none;
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+    border-radius: $form-border-radius/2;
+    border: $input-border;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      content: ' ';
+    }
+
+    &:focus,
+    &:hover,
+    &:checked {
+      border-color: $main-dark-color;
+    }
+
+    &:checked {
+      background-color: $main-dark-color;
+
+      &::before {
+        content: '\2714';
+        font-size: 0.75rem;
+        color: #ece0c9;
+      }
+    }
+  }
+}
+
+.checkboxLabel {
+  margin-left: 0.25rem;
+}
+
+.submitBtnWrapper {
+  align-self: flex-end;
+
+  .submitBtn {
+    background-color: $main-dark-color;
+    color: #ece0c9;
+    border: none;
+    border-radius: $form-border-radius/2;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+
+    // &:hover {
+    //   анімацію підібрати
+    // }
+  }
+}

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { follow, getUsers, unfollow } from '../../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../../common/Preloader/Preloader';
-import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
-import { compose } from "redux";
+import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 import { withTranslation } from 'react-i18next';
 
 class UsersContainer extends React.Component {
@@ -20,9 +20,10 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+        const { getUsers, isFetching, ...usersProps } = this.props
         return <>
-            {this.props.isFetching ? <Preloader /> : null}
-            <Users {...this.props} onPageChanged={this.onPageChanged} />
+            {isFetching ? <Preloader /> : null}
+            <Users {...usersProps} onPageChanged={this.onPageChanged} />
         </>
     }
 }

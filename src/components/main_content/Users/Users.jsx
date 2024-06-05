@@ -3,22 +3,21 @@ import styles from './Users.module.css'
 import User from './User/User';
 
 const Users = (props) => {
-    const t = props.t
+    const { currentPageNumber, pageSize, totalUsersCount, users, onPageChanged, ...userProps } = props
 
     const renderPageNumber = (pageNumber) => {
         switch (pageNumber) {
             case 0: //pages that hide in "..."
                 return <span className={styles.ellipsis}>...</span>
-            case props.currentPageNumber:
+            case currentPageNumber:
                 return <span className={styles.selectedPage}>{pageNumber}</span>
             default:
-                return <span className={styles.pages} onClick={(e) => props.onPageChanged(pageNumber)}>{pageNumber}</span>
+                return <span className={styles.pages} onClick={(e) => onPageChanged(pageNumber)}>{pageNumber}</span>
         }
     }
 
     const renderPagesControl = () => {
-        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-        let currentPageNumber = props.currentPageNumber
+        let pagesCount = Math.ceil(totalUsersCount / pageSize);
         let pages = [];
         if (currentPageNumber < 5) {
             for (let i = 1; i <= 5; i++) {
@@ -63,24 +62,16 @@ const Users = (props) => {
 
     let renderedPageControl = renderPagesControl();
 
-    let usersElements = props.users.map(u =>
+    let usersElements = users.map(user =>
         <User
-            key={u.id}
-            id={u.id}
-            photos={u.photos}
-            followed={u.followed}
-            name={u.name}
-            status={u.status}
-            follow={props.follow}
-            unfollow={props.unfollow}
-            t={t}
-            followingInProgress={props.followingInProgress}
-            toggleFollowingProgress={props.toggleFollowingProgress}
+            key={user.id}
+            {...user}
+            {...userProps}
         />)
 
     return (
-        <div className={styles.findUsers}>
-            <h3>{t('usersPage.users')}</h3>
+        <div className={styles.usersPage}>
+            <h3>{props.t('usersPage.users')}</h3>
             <div>
                 {renderedPageControl}
             </div>

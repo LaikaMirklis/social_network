@@ -1,0 +1,24 @@
+.bearWrapper {
+  position: relative;
+}
+
+.bear,
+.bearLimbs,
+.bearHand {
+  pointer-events: none;
+  user-select: none;
+}
+
+.bear {
+  position: absolute;
+}
+
+.bearLimbs {
+  position: absolute;
+  z-index: 3;
+}
+
+.bearHand {
+  position: absolute;
+  z-index: 4;
+}

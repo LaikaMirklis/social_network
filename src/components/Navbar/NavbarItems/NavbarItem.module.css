@@ -1,0 +1,69 @@
+.item span {
+  display: flex;
+}
+
+.doNotCross span {
+  position: relative;
+  pointer-events: none;
+}
+
+.doNotCross * {
+  pointer-events: none;
+}
+
+.doNotCross span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./../../../assets/images/do-not-cross-line.png");
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: normal;
+}
+
+.item p {
+  padding: 0;
+  margin: 0;
+  margin-left: 0.56em;
+}
+
+.item a {
+  text-decoration: none;
+  color: #382a2e;
+  font-size: 1.125em;
+  display: flex;
+  padding: 0 0 0.56em 0;
+  transition: color 0.3s ease;
+}
+
+.item a:hover,
+.item a:active,
+.item a:focus {
+  color: #af7557;
+}
+
+.icon {
+  align-self: center;
+}
+
+.item .button {
+  text-decoration: none;
+  color: #382a2e;
+  font-size: 1.125em;
+  display: flex;
+  padding: 0 0 0.56em 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: "Merriweather", serif;
+  transition: color 0.3s ease;
+}
+
+.item .button:hover,
+.item .button:active,
+.item .button:focus {
+  color: #af7557;
+}

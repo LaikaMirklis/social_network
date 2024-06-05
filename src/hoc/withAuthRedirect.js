@@ -1,11 +1,22 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 
-let mapStateToPropsForRedirect = (state) => ({ isAuth: state.auth.isAuth });
+const LOGIN_PATH = "/login";
+const PROFILE_PATH = "/profile";
+
+let mapStateToPropsForRedirect = (state) => ({
+  isAuth: state.auth.isAuth,
+});
 
 export const withAuthRedirect = (Component) => {
-  const RedirectComponent = (props) => {
-    if (!props.isAuth) return <Navigate to="/login" />;
+  const RedirectComponent = ({ isAuth, ...props }) => {
+    let location = useLocation();
+
+    if (!isAuth && location.pathname !== LOGIN_PATH)
+      return <Navigate to={LOGIN_PATH} />;
+    if (isAuth && location.pathname === LOGIN_PATH)
+      return <Navigate to={PROFILE_PATH} />;
+
     return <Component {...props} />;
   };
 

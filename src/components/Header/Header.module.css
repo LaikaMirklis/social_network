@@ -1,14 +1,15 @@
 .header {
   grid-area: header;
   background-color: #ece0c9;
-  border-bottom: 8px double #382a2e;
+  border-bottom: 0.5em double #382a2e;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 20px 20px 10px;
-  font-size: 16px;
+  padding: 1.25em;
+  padding-left: 0.625em;
   z-index: 100;
-  min-height: 40px;
+  min-height: 2.5em;
+  user-select: none;
 }
 
 .leftBlock {
@@ -17,18 +18,28 @@
 }
 
 .leftBlock img {
-  width: 60px;
-  margin-right: 10px;
+  width: 3.75em;
+  margin-right: 0.625em;
 }
 
-/* Adaptive size */
-@media screen and (min-width: 1270px) {
-  .header {
-    padding-right: 10vw;
-  }
+.rightBlock {
+  display: flex;
+  align-items: center;
 }
 
-.loginBlock {
+.rightBlock a {
+  text-decoration: none;
+  color: #382a2e;
+  transition: color 0.3s ease;
+}
+
+.rightBlock a:hover,
+.rightBlock a:active,
+.rightBlock a:focus {
+  color: #af7557;
+}
+
+.authUser {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,21 +47,10 @@
   width: 6em;
 }
 
-.loginBlock a {
-  text-decoration: none;
-  color: #382a2e;
-}
-
-.loginBlock a:hover,
-.loginBlock a:active,
-.loginBlock a:focus {
-  color: #af7557;
-}
-
-.loginBlock p {
-  font-size: 14px;
+.authUser p {
+  font-size: 0.875em;
   font-weight: 600;
-  margin: 4px 0 0 0;
+  margin: 0.25em 0 0;
   white-space: normal;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -58,12 +58,19 @@
   text-align: center;
 }
 
-.loginBlock img {
-  width: 40px;
+.authUser img {
+  width: 2.5em;
 }
 
 .userPhoto {
   clip-path: circle(50% at 50% 50%);
-  border: 3px solid #382a2e;
+  border: 0.1875em solid #382a2e;
   border-radius: 50%;
+}
+
+/* Adaptive size */
+@media screen and (width > 1200px) {
+  .header {
+    padding-right: var(--app-padding-large-screen);
+  }
 }

@@ -1,25 +1,35 @@
 .preloaderWrapper {
-  position: fixed;
-  top: 0;
-  left: auto;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  user-select: none;
 }
 
 .preloader {
-  z-index: 2;
-  position: relative;
-  right: 5%;
+  --preloader-height: 6.25rem;
+  height: var(--preloader-height);
+  top: calc(50vh - var(--preloader-height) / 2);
 }
 
 /* Adaptive size */
-@media screen and (min-width: 1270px) {
+@media screen and (width > 768px) {
   .preloader {
-    right: 12%;
+    --preloader-height: 8rem;
+  }
+}
+
+@media screen and (width > 992px) {
+  .preloader {
+    --preloader-height: 10.25rem;
+  }
+}
+
+@media screen and (width > 1200px) {
+  .preloader {
+    --preloader-height: 12.5rem;
+    padding-right: var(--app-padding-large-screen);
   }
 }

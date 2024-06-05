@@ -1,12 +1,12 @@
-import React from "react";
-import Header from "./Header";
-import { getAuthUserData } from "../../redux/auth-reducer";
+import React from 'react';
+import Header from './Header';
+import { getAuthUserData } from '../../redux/auth-reducer';
 import { connect } from 'react-redux';
 
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getAuthUserData(this.props.userId)
+        this.props.getAuthUserData()
     }
 
     render() {

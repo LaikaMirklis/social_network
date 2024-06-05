@@ -1,18 +1,18 @@
-.profileWrapper {
-  padding: 20px;
+.profilePage {
+  padding: 1.25em;
   display: flex;
   justify-content: center;
 }
 
 .profileInfo {
   display: flex;
-  border: 3px solid #382a2e;
+  border: 0.1875em solid #382a2e;
   background-color: #ece0c9;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  width: 600px;
-  padding: 20px;
-  color: #382a2e;
+  border-radius: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.16) 0em 0.1875em 0.375em,
+    rgba(0, 0, 0, 0.23) 0em 0.1875em 0.375em;
+  width: 37.5em;
+  padding: 1.25em;
 }
 
 .leftBlock,
@@ -25,42 +25,42 @@
 }
 
 .rightBlock {
-  border-left: 3px solid #dccfbb;
-  padding-left: 40px;
+  border-left: 0.1875em solid #dccfbb;
+  padding-left: 2.5em;
   align-items: flex-start;
 }
 
 .userPhoto {
-  width: 150px;
+  width: 9.375em;
   clip-path: circle(50% at 50% 50%);
-  border: 3px solid #382a2e;
+  border: 0.1875em solid #382a2e;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 0.625em;
 }
 
 .fullName {
-  font-size: 24px;
+  font-size: 1.5em;
   text-align: center;
 }
 
 .aboutMe {
   width: 100%;
-  padding-bottom: 16px;
+  padding-bottom: 1em;
   margin-bottom: 0;
-  border-bottom: 3px solid #dccfbb;
+  border-bottom: 0.1875em solid #dccfbb;
 }
 
 .jobInfo p {
-  margin-bottom: 16px;
+  margin-bottom: 1em;
 }
 
 .jobInfo {
-  border-bottom: 3px solid #dccfbb;
+  border-bottom: 0.1875em solid #dccfbb;
 }
 
 .contacts h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 1.125em;
+  margin-bottom: 0.625em;
 }
 
 .contacts ul {
@@ -69,8 +69,7 @@
 }
 
 .contacts li {
-  margin-bottom: 8px;
-  font-size: 16px;
+  margin-bottom: 0.5em;
   color: #695c58;
   white-space: normal;
   text-overflow: ellipsis;
@@ -79,7 +78,7 @@
 }
 
 .contacts a {
-  color: #ae7558;
+  color: #af7557;
   text-decoration: none;
 }
 
@@ -88,8 +87,8 @@
 }
 
 /* Adaptive size */
-@media screen and (min-width: 1270px) {
-  .profileWrapper {
-    padding-right: 10vw;
+@media screen and (width > 1200px) {
+  .profilePage {
+    padding-right: var(--app-padding-large-screen);
   }
 }

@@ -1,62 +1,39 @@
 import styles from './Dialogs.module.css'
 import Message from './Messages/Message';
 import DialogItem from './DialogItem/DialogItem';
+import AddMessageForm from './AddMessageForm';
 
 const Dialogs = (props) => {
-    const t = props.t;
+    const { t, dialogsPage, sendMessage } = props;
 
-    let dialogsElements = props.dialogsPage.dialogs.map(d =>
+    let dialogsElements = dialogsPage.dialogs.map(dialog =>
         <DialogItem
-            key={d.id}
-            name={d.name}
-            id={d.id}
-            avatar={d.ava}
+            key={dialog.id}
+            {...dialog}
             t={t}
         />)
 
-    let messageElements = props.dialogsPage.messages.map(m => {
+    let messageElements = dialogsPage.messages.map(message => {
+        let { id, ...rest } = message
         return <Message
-            key={m.id}
-            message={m.message}
-            userId={m.userId}
+            key={id}
+            {...rest}
         />
     })
 
-    let newMessageBody = props.dialogsPage.newMessageBody;
-
-    let onNewMessageChange = (e) => { // e - event
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
+    let addNewMessage = (values) => {
+        sendMessage(values.newMessageBody)
+        values.newMessageBody = '' // хз чи так можна
     }
 
-    let onSendMessageClick = () => {
-        props.sendMessage();
-    };
-
-    let sendIfKeyPress = (event) => {
-        if (event.key === 'Enter' && event.ctrlKey) {  //Ctrl+Enter
-            event.preventDefault();
-            onSendMessageClick();
-        }
-    };
-
     return (
-        <div className={styles.dialogs}>
+        <div className={styles.dialogsPage}>
             <div className={styles.dialogsItems}>
                 {dialogsElements}
             </div>
             <div className={styles.messages}>
                 {messageElements}
-                <div className={styles.sendArea}>
-                    <textarea
-                        placeholder={t('dialogsPage.textArea')}
-                        value={newMessageBody}
-                        onChange={onNewMessageChange}
-                        onKeyDown={sendIfKeyPress}
-                    />
-                    <button onClick={onSendMessageClick}>{t('dialogsPage.sendButton')}</button>
-                </div>
-
+                <AddMessageForm onSubmit={addNewMessage} t={t} />
             </div>
         </div>
     )

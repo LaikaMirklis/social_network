@@ -1,54 +1,68 @@
-.dialogs {
+.dialogsPage {
   display: grid;
-  grid-template-columns: clamp(200px, 20%, 275px) 1fr;
-  min-height: calc(92vh - 10px);
+  grid-template-columns: clamp(12.5rem, 19vw, 17.187rem) 1fr;
   height: 100%;
 }
 
 .dialogsItems {
-  border-right: 1px solid #382a2e;
-  padding-top: 15px;
+  border-right: var(--small-border);
   background-color: #ece0c9;
 }
 
 .messages {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 1.25rem;
   word-wrap: break-word;
 }
 
-.sendArea {
+.form {
   display: flex;
   flex-direction: row;
   margin-top: auto;
-  margin-left: auto;
   width: 100%;
 }
 
-.sendArea textarea {
-  background-color: #f6f0e4;
+.form textarea {
   border: thick double #382a2e;
-  font-family: "Merriweather", serif;
+  padding: 0.5rem;
   width: 100%;
-  padding: 4px;
-  font-size: 14px;
   resize: none;
 }
 
-.sendArea button {
-  padding: 8px;
-  margin-left: 20px;
-  background-color: #382a2e;
-  color: #e5d9c3;
-  font-family: "Merriweather", serif;
+.buttonWrapper button {
+  margin: 0 0 0 1.55rem;
+  border: 0.1875rem double #382a2e;
+  background-color: #f1e8d7;
+  color: #382a2e;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  height: 80%;
+  padding: 0 1.1rem 0 0.9rem;
+  transition: transform 3s ease;
+}
+
+.buttonWrapper:hover {
+  transform: scale(1.1);
+}
+
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.buttonTriangle {
+  bottom: 1.125rem;
+  left: 1.75rem;
+  transform: rotate(34deg);
 }
 
 /* Adaptive size */
-@media screen and (min-width: 1270px) {
+@media screen and (width > 1200px) {
   .messages {
-    padding-right: 10vw;
+    padding-right: var(--app-padding-large-screen);
   }
 }

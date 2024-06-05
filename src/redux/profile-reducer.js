@@ -1,12 +1,12 @@
-import { profileAPI } from "../api/api";
+import { profileAPI } from '../api/api';
 
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
   profile: null,
-  status: "",
+  status: '',
   isFetching: false,
 };
 
@@ -45,7 +45,7 @@ const toggleIsFetching = (isFetching) => ({
 export const getUserProfile = (userId) => (dispatch) => {
   if (userId === 0) {
     dispatch(setUserProfile(null));
-    dispatch(setStatus(""));
+    dispatch(setStatus(''));
   } else {
     profileAPI.getProfile(userId).then((data) => {
       dispatch(setUserProfile(data));

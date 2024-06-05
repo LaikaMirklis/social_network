@@ -1,16 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: "https://social-network.samuraijs.com/api/1.0/",
+  baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   withCredentials: true,
   headers: {
-    "API-KEY": "258d2f5d-d2e7-4d71-a4ad-dab9afab74fc",
+    'API-KEY': '258d2f5d-d2e7-4d71-a4ad-dab9afab74fc',
   },
 });
 
 export const authAPI = {
-  me() {
+  getAuthUserData() {
     return instance.get(`auth/me`).then((response) => response.data);
+  },
+  logIn(authData) {
+    return instance
+      .post(`auth/login`, authData)
+      .then((response) => response.data);
+  },
+  logOut() {
+    return instance
+      .delete(`auth/login`)
+      .then((response) => response.data.resultCode);
   },
 };
 

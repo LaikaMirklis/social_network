@@ -3,38 +3,31 @@ import defaultPhoto from '../../../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-    const t = props.t;
+    const { t, id, photos, followed, followingInProgress, unfollow, follow, name, status } = props;
 
     return (
         <div className={styles.user} >
             <div className={styles.leftBlock}>
-                <NavLink to={'/profile/' + props.id} >
-                    <img src={props.photos.small != null
-                        ? props.photos.small
+                <NavLink to={'/profile/' + id} >
+                    <img src={photos.small != null
+                        ? photos.small
                         : defaultPhoto}
                         className={styles.userPhoto}
-                        alt="user_image" />
+                        alt={name} />
                 </NavLink>
-                {props.followed
-                    ? <button disabled={props.followingInProgress.some(id => id === props.id)}
-                        onClick={() => props.unfollow(props.id)}
-                        className={styles.followedButton}> {t('usersPage.unfollow')}</button>
-                    : <button disabled={props.followingInProgress.some(id => id === props.id)}
-                        onClick={() => props.follow(props.id)}
-                        className={styles.followedButton}> {t('usersPage.follow')}</button>
+                {followed
+                    ? <button disabled={followingInProgress.some(userId => userId === id)}
+                        onClick={() => unfollow(id)}
+                        className={styles.followedBtn}> {t('usersPage.unfollow')}</button>
+                    : <button disabled={followingInProgress.some(userId => userId === id)}
+                        onClick={() => follow(id)}
+                        className={styles.followedBtn}> {t('usersPage.follow')}</button>
                 }
             </div>
 
-            <div className={styles.userInfo}>
-                <div className={styles.baseInfo}>
-                    <div>{props.name}</div>
-                    {/* <div className={styles.location} >
-                        <div>Country,</div>
-                        <div>city</div>
-                    </div> */}
-                </div>
-                <div className={styles.status}>{props.status}</div>
-
+            <div className={styles.rightBlock}>
+                <div className={styles.name}> {name} </div>
+                <div className={styles.status}>{status}</div>
             </div>
 
         </div>

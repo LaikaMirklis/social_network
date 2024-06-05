@@ -1,7 +1,8 @@
-import { authAPI, usersAPI } from "../api/api";
+import { authAPI, profileAPI } from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_USER_PHOTO = "SET_USER_PHOTO";
+const DELETE_USER_DATA = "DELETE_USER_DATA";
 
 let initialState = {
   userId: null,
@@ -25,6 +26,15 @@ const authReducer = (state = initialState, action) => {
         ...state,
         userPhoto: action.userPhoto,
       };
+    case DELETE_USER_DATA:
+      return {
+        ...state,
+        userId: null,
+        login: null,
+        email: null,
+        isAuth: false,
+        userPhoto: null,
+      };
     default:
       return state;
   }
@@ -38,25 +48,50 @@ const setUserPhoto = (userPhoto) => ({
   type: SET_USER_PHOTO,
   userPhoto,
 });
+const deleteAuthUserData = () => ({
+  type: DELETE_USER_DATA,
+});
 
-export const getAuthUserData = (userId) => (dispatch) => {
+export const getAuthUserData = () => (dispatch) => {
   authAPI
-    .me()
+    .getAuthUserData()
     .then((data) => {
       if (data.resultCode === 0) {
         let { id, login, email } = data.data;
         dispatch(setAuthUserData(id, login, email));
-        if (userId) {
-          return usersAPI.getProfile(userId);
-        }
+        if (id) return profileAPI.getProfile(id);
       }
     })
     .then((data) => {
-      if (data) dispatch(setUserPhoto(data.photos.small));
-    })
-    .catch((error) => {
-      console.error("Axios error:", error);
+      if (data) {
+        dispatch(setUserPhoto(data.photos.small));
+      }
     });
+};
+
+export const logInUser = (loginData) => (dispatch) => {
+  authAPI
+    .logIn(loginData)
+    .then((data) => {
+      if (data.resultCode === 0) {
+        return profileAPI.getProfile(data.data.userId);
+      }
+    })
+    .then((data) => {
+      if (data) {
+        let { fullName, userId, photos } = data;
+        dispatch(setAuthUserData(userId, fullName));
+        dispatch(setUserPhoto(photos.small));
+      }
+    });
+};
+
+export const logOutAuthUser = () => (dispatch) => {
+  authAPI.logOut().then((resultCode) => {
+    if (resultCode === 0) {
+      dispatch(deleteAuthUserData());
+    }
+  });
 };
 
 export default authReducer;

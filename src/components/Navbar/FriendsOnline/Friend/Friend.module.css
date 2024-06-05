@@ -4,14 +4,14 @@
   margin: auto;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
-  padding: 0 5px;
+  font-size: 0.875em;
+  padding: 0 0.36em;
 }
 
 .avatar {
-  margin-bottom: 5px;
-  width: 35px;
+  margin-bottom: 0.36em;
+  width: 2.5em;
   clip-path: circle(50% at 50% 50%);
-  border: 1px solid #382a2e;
+  border: 0.07em solid #382a2e;
   border-radius: 50%;
 }

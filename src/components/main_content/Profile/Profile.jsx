@@ -1,47 +1,47 @@
-import styles from "./Profile.module.css"
+import styles from './Profile.module.css'
 import defaultPhoto from '../../../assets/images/user.png'
-import ProfileStatus from "./ProfileInfo/ProfileStatus";
+import ProfileStatus from './ProfileInfo/ProfileStatus';
 
 const Profile = (props) => {
-    const t = props.t;
-    const { profile, getUserProfile, getUserStatus, ...profileStatusProps } = props;
+    const { t, profile, getUserProfile, getUserStatus, ...profileStatusProps } = props;
+    const { photos, fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = props.profile
 
     return (
-        <div className={styles.profileWrapper}>
+        <div className={styles.profilePage}>
             <div className={styles.profileInfo}>
 
                 <div className={styles.leftBlock}>
-                    <img src={props.profile.photos.large != null
-                        ? props.profile.photos.large
+                    <img src={photos.large != null
+                        ? photos.large
                         : defaultPhoto}
                         className={styles.userPhoto}
-                        alt={props.profile.fullName} />
+                        alt={fullName} />
 
-                    <h2 className={styles.fullName}>{props.profile.fullName}</h2>
+                    <h2 className={styles.fullName}>{fullName}</h2>
 
                     <ProfileStatus {...profileStatusProps} />
                 </div>
 
                 <div className={styles.rightBlock}>
-                    {props.profile.aboutMe && <p className={styles.aboutMe}>
-                        <strong>{t('profilePage.aboutMe')}</strong> {props.profile.aboutMe}</p>}
+                    {aboutMe && <p className={styles.aboutMe}>
+                        <strong>{t('profilePage.aboutMe')}</strong>{aboutMe}</p>}
 
-                    {props.profile.lookingForAJob && (
+                    {lookingForAJob && (
                         <div className={styles.jobInfo}>
-                            <p><strong>{t('profilePage.jobLooking')}</strong> </p>
-                            <p><strong> {t('profilePage.jobDescription')}</strong>{props.profile.lookingForAJobDescription}</p>
+                            <p><strong>{t('profilePage.jobLooking')}</strong></p>
+                            <p><strong> {t('profilePage.jobDescription')}</strong>{lookingForAJobDescription}</p>
                         </div>
                     )}
 
-                    {Object.values(props.profile.contacts).some((value) => value) &&
+                    {Object.values(contacts).some((value) => value) &&
                         (<div className={styles.contacts}>
                             <h3>{t('profilePage.contacts')}</h3>
                             <ul>
-                                {Object.entries(props.profile.contacts).map(([key, value]) => (
+                                {Object.entries(contacts).map(([key, value]) => (
                                     value && (
                                         <li key={key}>
                                             <strong>{key}:</strong>{' '}
-                                            <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>
+                                            <a href={value} target='_blank' rel='noopener noreferrer'>{value}</a>
                                         </li>
                                     )
                                 ))}

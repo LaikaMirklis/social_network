@@ -1,16 +1,51 @@
+:root {
+  --app-padding-large-screen: 10vw;
+  --main-font: 'Merriweather', serif;
+  --small-border: 0.0625rem solid #382a2e;
+}
+
+textarea,
+input {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+  background-color: #f6f0e4;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+::placeholder {
+  color: #757575;
+  opacity: 1; /* Firefox */
+}
+
+::selection {
+  background-color: #382a2e;
+  color: #ece0c9;
+}
+
 .app-wrapper {
   margin: 0 auto;
   display: grid;
   grid-template-areas:
-    "navbar header header"
-    "navbar content content";
+    'navbar header header'
+    'navbar content content';
   grid-template-rows: 9vh 1fr;
   grid-template-columns: auto 1fr;
-  font-family: "Merriweather", serif;
   min-height: 100vh;
+  color: #382a2e;
 }
 
 .app-wrapper-content {
   grid-area: content;
   background-color: #f1e8d7;
+  position: relative;
 }
