@@ -5,6 +5,8 @@ import User from './User/User';
 const Users = (props) => {
     const { currentPageNumber, pageSize, totalUsersCount, users, onPageChanged, ...userProps } = props
 
+    document.title = props.t('pageTitles.users')
+
     const renderPageNumber = (pageNumber) => {
         switch (pageNumber) {
             case 0: //pages that hide in "..."

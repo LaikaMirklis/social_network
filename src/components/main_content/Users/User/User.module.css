@@ -40,7 +40,7 @@
   padding: 0.25em;
   background-color: #382a2e;
   color: #e5d9c3;
-  font-family: "Merriweather", serif;
+  font-family: 'Merriweather', serif;
   cursor: pointer;
   font-size: 0.875em;
   user-select: none;
@@ -83,11 +83,11 @@
 }
 
 /* Adaptive size */
-@media screen and (1450px < width < 1690px) {
+/* @media screen and (1450px < width < 1690px) {
   .user {
     width: 16em;
   }
   .status {
     width: 10em;
   }
-}
+} */

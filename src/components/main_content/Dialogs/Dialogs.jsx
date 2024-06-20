@@ -4,7 +4,7 @@ import DialogItem from './DialogItem/DialogItem';
 import AddMessageForm from './AddMessageForm';
 
 const Dialogs = (props) => {
-    const { t, dialogsPage, sendMessage } = props;
+    const { t, dialogsPage, sendMessage, i18n } = props;
 
     let dialogsElements = dialogsPage.dialogs.map(dialog =>
         <DialogItem
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
             </div>
             <div className={styles.messages}>
                 {messageElements}
-                <AddMessageForm onSubmit={addNewMessage} t={t} />
+                <AddMessageForm onSubmit={addNewMessage} t={t} i18n={i18n} />
             </div>
         </div>
     )

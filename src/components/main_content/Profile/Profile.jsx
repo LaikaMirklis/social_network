@@ -3,8 +3,11 @@ import defaultPhoto from '../../../assets/images/user.png'
 import ProfileStatus from './ProfileInfo/ProfileStatus';
 
 const Profile = (props) => {
-    const { t, profile, getUserProfile, getUserStatus, ...profileStatusProps } = props;
+    const { profile, getUserProfile, getUserStatus, ...profileStatusProps } = props;
     const { photos, fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = props.profile
+    const t = props.t;
+
+    document.title = props.t('pageTitles.profile');
 
     return (
         <div className={styles.profilePage}>
@@ -41,7 +44,7 @@ const Profile = (props) => {
                                     value && (
                                         <li key={key}>
                                             <strong>{key}:</strong>{' '}
-                                            <a href={value} target='_blank' rel='noopener noreferrer'>{value}</a>
+                                            <a href={value}>{value}</a>
                                         </li>
                                     )
                                 ))}

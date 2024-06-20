@@ -11,7 +11,7 @@ import Music from './components/main_content/Music/Music';
 import Settings from './components/main_content/Settings/Settings';
 import UsersContainer from './components/main_content/Users/UsersContainer';
 import NotFound from './components/common/NotFound/NotFound';
-import LoginPage from './components/main_content/Login/Login';
+import Login from './components/main_content/Login/Login';
 
 const App = (props) => {
   const { t } = useTranslation(); //without it button langChange don`t switch text (Ukr-Eng)
@@ -29,7 +29,7 @@ const App = (props) => {
           <Route path="/music" element={<Music />} />
           <Route path="/users" element={<UsersContainer />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
           <Route path="/404" element={<NotFound />} />
         </Routes>

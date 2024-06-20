@@ -11,8 +11,6 @@ import { withTranslation } from 'react-i18next';
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        document.title = this.props.t('pageTitles.profile');
-
         let userId = this.props.match.params.userId;
         if (!userId && this.props.userId)
             userId = this.props.userId;

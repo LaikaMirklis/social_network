@@ -10,8 +10,6 @@ import { withTranslation } from 'react-i18next';
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        document.title = this.props.t('pageTitles.users')
-
         this.props.getUsers(this.props.pageSize, this.props.currentPageNumber)
     }
 

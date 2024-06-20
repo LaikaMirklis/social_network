@@ -24,10 +24,16 @@
 }
 
 .form textarea {
-  border: thick double #382a2e;
-  padding: 0.5rem;
+  border: 0.3rem double #382a2e;
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
   width: 100%;
   resize: none;
+  overflow: hidden;
+}
+
+.form span {
+  left: 0.8rem;
+  top: -1.5rem;
 }
 
 .buttonWrapper button {
@@ -58,6 +64,53 @@
   bottom: 1.125rem;
   left: 1.75rem;
   transform: rotate(34deg);
+}
+
+.fieldWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.emojiButton {
+  padding: 0;
+  position: absolute;
+  right: 0.8rem;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.5em;
+  border: none;
+}
+.emojiButton:hover {
+  transform: scale(1.1);
+}
+
+.pickerContainer {
+  position: absolute;
+  bottom: 3.75rem;
+  right: -1rem;
+}
+
+em-emoji-picker {
+  --border-radius: 0.5rem;
+  --category-icon-size: 1rem;
+  --color-border-over: rgba(0, 0, 0, 0.1);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --font-family: var(--main-font);
+  --font-size: 1rem;
+  --rgb-accent: 175, 117, 87;
+  --rgb-background: 236, 224, 201;
+  --rgb-color: 56, 42, 46;
+  --rgb-input: 246, 240, 228;
+  --shadow: rgba(0, 0, 0, 0.1) 0 0.1875rem 0.375rem;
+
+  border: 0.125rem solid #382a2e;
+
+  height: 50vh;
+  min-height: 400px;
+  max-height: 800px;
+  user-select: none;
 }
 
 /* Adaptive size */

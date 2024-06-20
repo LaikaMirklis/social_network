@@ -1,0 +1,42 @@
+.formControl {
+  display: flex;
+  width: 100%;
+  --icon-size: 1.25rem;
+  --icon-left: 0.8rem;
+  --padding-left: 2.25rem;
+}
+
+.formControl.error input,
+.formControl.error textarea {
+  border-color: #7f0000;
+  padding-left: var(--padding-left);
+  transition: color 0.3s ease;
+}
+
+.errorMessage span,
+.errorMessage svg {
+  color: #7f0000;
+}
+
+.errorMessage span {
+  position: absolute;
+  width: max-content;
+  /* тінь */
+}
+
+.errorMessage button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  font-size: var(--icon-size);
+  left: var(--icon-left);
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.errorMessage button:hover svg {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}

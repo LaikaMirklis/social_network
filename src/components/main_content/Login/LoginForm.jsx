@@ -3,6 +3,8 @@ import styles from './LoginForm.module.scss';
 import { Field, reduxForm } from 'redux-form';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { Input } from '../../common/FormsControls/FormsControls';
+import { required } from '../../../utils/validators/validators';
 
 const LoginForm = (props) => {
     const { handleSubmit, t } = props
@@ -36,12 +38,14 @@ const LoginForm = (props) => {
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.inputField}>
-                <Field name='email' component='input' type='email'
-                    placeholder={t('loginPage.email')} autoComplete='off' />
+                <Field name='email' component={Input} type='email'
+                    placeholder={t('loginPage.email')} autoComplete='off'
+                    validate={[required]} />
             </div>
             <div className={styles.inputField}>
-                <Field name='password' component='input' type={inputType}
-                    placeholder={t('loginPage.password')} autoComplete='off' />
+                <Field name='password' component={Input} type={inputType}
+                    placeholder={t('loginPage.password')} autoComplete='off'
+                    validate={[required]} />
                 <button title={t(title)} className={`${styles.showPasswordBtn} ${buttonClass}`}
                     onClick={togglePasswordVisibility} type='button'>
                     <FontAwesomeIcon icon={icon} />

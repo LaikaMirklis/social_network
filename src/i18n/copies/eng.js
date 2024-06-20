@@ -62,4 +62,10 @@ export const eng = {
     showPassword: 'Show password',
     hidePassword: 'Hide password',
   },
+
+  validationMessages: {
+    requiredField: 'Field is required',
+    maxLength: 'Max length is',
+    symbols: 'symbols',
+  },
 };

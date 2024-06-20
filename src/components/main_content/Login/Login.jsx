@@ -9,6 +9,8 @@ import LoginForm from './LoginForm';
 import BearFormContainer from '../../common/FormBear/BearFormContainer';
 
 const Login = (props) => {
+    document.title = props.t('pageTitles.login');
+
     return (
         <div className={styles.loginPage}>
             <BearFormContainer styles={styles}>
@@ -21,10 +23,6 @@ const Login = (props) => {
 };
 
 class LoginContainer extends React.Component {
-
-    componentDidMount() {
-        document.title = this.props.t('pageTitles.login');
-    }
 
     onSubmit = (formData) => {
         this.props.logInUser(formData)

@@ -18,7 +18,7 @@
 .eye {
   width: 3.25rem;
   height: 3.25rem;
-  background: #fbfbf9;
+  background-color: #fbfbf9;
   display: inline-block;
   border-radius: 100%;
 
@@ -35,7 +35,7 @@
 .rightPupil {
   width: 2.5rem;
   height: 2.5rem;
-  background: #382a2e;
+  background-color: #382a2e;
   position: absolute;
   border-radius: 100%;
   transition: transform 0.1s ease;
@@ -46,7 +46,7 @@
 .eyeBlink {
   width: 0.5rem;
   height: 0.5rem;
-  background: #fbfbf9;
+  background-color: #fbfbf9;
   border-radius: 100%;
   margin-left: 1rem;
 }

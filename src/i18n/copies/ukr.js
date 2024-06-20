@@ -62,4 +62,10 @@ export const ukr = {
     showPassword: 'Показати пароль',
     hidePassword: 'Приховати пароль',
   },
+
+  validationMessages: {
+    requiredField: "Поле обов'язкове",
+    maxLength: 'Максимальна довжина',
+    symbols: 'символів',
+  },
 };
