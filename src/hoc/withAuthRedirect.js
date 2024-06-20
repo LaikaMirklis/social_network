@@ -1,8 +1,8 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
+import { Navigate, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const LOGIN_PATH = "/login";
-const PROFILE_PATH = "/profile";
+const LOGIN_PATH = '/login';
+const PROFILE_PATH = '/profile';
 
 let mapStateToPropsForRedirect = (state) => ({
   isAuth: state.auth.isAuth,

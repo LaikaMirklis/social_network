@@ -1,8 +1,7 @@
-import { authAPI, profileAPI } from "../api/api";
+import { authAPI, profileAPI } from '../api/api';
 
-const SET_USER_DATA = "SET_USER_DATA";
-const SET_USER_PHOTO = "SET_USER_PHOTO";
-const DELETE_USER_DATA = "DELETE_USER_DATA";
+const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_PHOTO = 'SET_USER_PHOTO';
 
 let initialState = {
   userId: null,
@@ -18,38 +17,25 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
-        isAuth: true,
+        ...action.payload,
       };
     case SET_USER_PHOTO:
       return {
         ...state,
         userPhoto: action.userPhoto,
       };
-    case DELETE_USER_DATA:
-      return {
-        ...state,
-        userId: null,
-        login: null,
-        email: null,
-        isAuth: false,
-        userPhoto: null,
-      };
     default:
       return state;
   }
 };
 
-const setAuthUserData = (userId, login, email) => ({
+const setAuthUserData = (userId, login, email, isAuth) => ({
   type: SET_USER_DATA,
-  data: { userId, login, email },
+  payload: { userId, login, email, isAuth },
 });
 const setUserPhoto = (userPhoto) => ({
   type: SET_USER_PHOTO,
   userPhoto,
-});
-const deleteAuthUserData = () => ({
-  type: DELETE_USER_DATA,
 });
 
 export const getAuthUserData = () => (dispatch) => {
@@ -58,7 +44,7 @@ export const getAuthUserData = () => (dispatch) => {
     .then((data) => {
       if (data.resultCode === 0) {
         let { id, login, email } = data.data;
-        dispatch(setAuthUserData(id, login, email));
+        dispatch(setAuthUserData(id, login, email, true));
         if (id) return profileAPI.getProfile(id);
       }
     })
@@ -69,27 +55,21 @@ export const getAuthUserData = () => (dispatch) => {
     });
 };
 
-export const logInUser = (loginData) => (dispatch) => {
-  authAPI
-    .logIn(loginData)
-    .then((data) => {
+export const logInUser =
+  ({ email, password, rememberMe }) =>
+  (dispatch) => {
+    authAPI.logIn(email, password, rememberMe).then((data) => {
       if (data.resultCode === 0) {
-        return profileAPI.getProfile(data.data.userId);
-      }
-    })
-    .then((data) => {
-      if (data) {
-        let { fullName, userId, photos } = data;
-        dispatch(setAuthUserData(userId, fullName));
-        dispatch(setUserPhoto(photos.small));
+        dispatch(getAuthUserData());
       }
     });
-};
+  };
 
 export const logOutAuthUser = () => (dispatch) => {
-  authAPI.logOut().then((resultCode) => {
-    if (resultCode === 0) {
-      dispatch(deleteAuthUserData());
+  authAPI.logOut().then((data) => {
+    if (data.resultCode === 0) {
+      dispatch(setAuthUserData(null, null, null, false));
+      dispatch(setUserPhoto(null));
     }
   });
 };

@@ -1,5 +1,4 @@
 import styles from './Login.module.css';
-import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
@@ -9,12 +8,18 @@ import LoginForm from './LoginForm';
 import BearFormContainer from '../../common/FormBear/BearFormContainer';
 
 const Login = (props) => {
-    document.title = props.t('pageTitles.login');
+    const { t, logInUser } = props;
+
+    document.title = t('pageTitles.login');
+
+    const onSubmit = (formData) => {
+        logInUser(formData)
+    }
 
     return (
         <div className={styles.loginPage}>
             <BearFormContainer styles={styles}>
-                <LoginForm {...props} />
+                <LoginForm onSubmit={onSubmit} t={t} />
             </BearFormContainer>
 
             <h1>{props.t('loginPage.login')}</h1>
@@ -22,23 +27,8 @@ const Login = (props) => {
     );
 };
 
-class LoginContainer extends React.Component {
-
-    onSubmit = (formData) => {
-        this.props.logInUser(formData)
-    }
-
-    render() {
-        return <Login onSubmit={this.onSubmit} t={this.props.t} />
-    }
-}
-
-const mapStateToProps = (state) => ({
-    userId: state.auth.userId,
-});
-
 export default compose(
-    connect(mapStateToProps, { logInUser }),
+    connect(null, { logInUser }),
     withAuthRedirect,
     withTranslation()
-)(LoginContainer);
+)(Login);

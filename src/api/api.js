@@ -12,15 +12,13 @@ export const authAPI = {
   getAuthUserData() {
     return instance.get(`auth/me`).then((response) => response.data);
   },
-  logIn(authData) {
+  logIn(email, password, rememberMe = false) {
     return instance
-      .post(`auth/login`, authData)
+      .post(`auth/login`, { email, password, rememberMe })
       .then((response) => response.data);
   },
   logOut() {
-    return instance
-      .delete(`auth/login`)
-      .then((response) => response.data.resultCode);
+    return instance.delete(`auth/login`).then((response) => response.data);
   },
 };
 
