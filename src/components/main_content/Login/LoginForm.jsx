@@ -7,7 +7,7 @@ import { Input } from '../../common/FormsControls/FormsControls';
 import { required } from '../../../utils/validators/validators';
 
 const LoginForm = (props) => {
-    const { handleSubmit, t } = props
+    const { handleSubmit, t, error } = props
 
     const hiddenPasswordConfig = {
         inputType: 'password',
@@ -55,6 +55,7 @@ const LoginForm = (props) => {
                 <Field name='rememberMe' component='input' type='checkbox' />
                 <label className={styles.checkboxLabel}>{t('loginPage.checkbox')}</label>
             </div>
+            {error && <div className={styles.formSummaryError}>{error}</div>}
             <div className={styles.submitBtnWrapper}>
                 <button className={styles.submitBtn}>{t('loginPage.logIn')}</button>
             </div>

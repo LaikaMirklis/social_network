@@ -12,19 +12,10 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
-        if (!userId && this.props.userId)
-            userId = this.props.userId;
-        if (userId) {
-            this.props.getUserProfile(userId);
-            this.props.getUserStatus(userId);
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.userId !== prevProps.userId) {
-            this.props.getUserProfile(this.props.userId);
-            this.props.getUserStatus(this.props.userId);
-        }
+        if (!userId && this.props.authorizedUserId)
+            userId = this.props.authorizedUserId;
+        this.props.getUserProfile(userId);
+        this.props.getUserStatus(userId);
     }
 
     componentWillUnmount() {
@@ -33,11 +24,11 @@ class ProfileContainer extends React.Component {
 
     compareIds() {
         if (this.props.profile)
-            return this.props.profile.userId === this.props.userId
+            return this.props.profile.userId === this.props.authorizedUserId
     }
 
     getProfileWithProps() {
-        const { match, userId, getUserProfile, getUserStatus, ...profileProps } = this.props;
+        const { match, authorizedUserId, getUserProfile, getUserStatus, ...profileProps } = this.props;
         return <Profile  {...profileProps} isAuthUserProfile={this.compareIds()} />
     }
 
@@ -47,8 +38,8 @@ class ProfileContainer extends React.Component {
 
         if (!this.props.match.params.userId && !this.compareIds()) {
             this.props.getUserProfile(0); // to see Preloader
-            this.props.getUserProfile(this.props.userId);
-            this.props.getUserStatus(this.props.userId);
+            this.props.getUserProfile(this.props.authorizedUserId);
+            this.props.getUserStatus(this.props.authorizedUserId);
             return this.getProfileWithProps()
         }
 
@@ -58,7 +49,7 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    userId: state.auth.userId,
+    authorizedUserId: state.auth.userId,
     status: state.profilePage.status,
     isFetching: state.profilePage.isFetching,
 });

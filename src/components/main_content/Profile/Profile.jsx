@@ -3,7 +3,7 @@ import defaultPhoto from '../../../assets/images/user.png'
 import ProfileStatus from './ProfileInfo/ProfileStatus';
 
 const Profile = (props) => {
-    const { profile, getUserProfile, getUserStatus, ...profileStatusProps } = props;
+    const { profile, i18n, ...profileStatusProps } = props;
     const { photos, fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = props.profile
     const t = props.t;
 
