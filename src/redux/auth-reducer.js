@@ -1,5 +1,4 @@
 import { authAPI, profileAPI } from '../api/api';
-import { stopSubmit } from 'redux-form';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
@@ -57,15 +56,18 @@ export const getAuthUserData = () => (dispatch) => {
 };
 
 export const logInUser =
-  ({ email, password, rememberMe }) =>
+  ({ email, password, rememberMe, captcha }, setFormError, setCaptchaImgUrl) =>
   (dispatch) => {
-    authAPI.logIn(email, password, rememberMe).then((data) => {
-      if (data.resultCode === 0) {
+    authAPI.logIn(email, password, rememberMe, captcha).then((data) => {
+      const { resultCode, messages } = data;
+      if (resultCode === 0) {
         dispatch(getAuthUserData());
       } else {
-        let message =
-          data.messages.length > 0 ? data.messages[0] : 'Some error';
-        dispatch(stopSubmit('login', { _error: message }));
+        let message = messages.length > 0 ? messages[0] : 'Some error';
+        setFormError(message);
+        if (resultCode === 10) {
+          authAPI.getCaptcha().then((url) => setCaptchaImgUrl(url));
+        }
       }
     });
   };

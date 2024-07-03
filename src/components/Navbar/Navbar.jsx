@@ -64,6 +64,7 @@ const Navbar = (props) => {
             textStyle={textStyle}
             wrapperStyle={wrapperStyle}
             t={t}
+            key={item.title}
         />
     })
 

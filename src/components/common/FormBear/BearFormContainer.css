@@ -18,6 +18,10 @@
   z-index: 3;
 }
 
+.bearLimbs.hidden {
+  z-index: 0;
+}
+
 .bearHand {
   position: absolute;
   z-index: 4;

@@ -66,7 +66,7 @@ const MovingEyes = (props) => {
     ]
 
     let eyesElements = pupilsData.map(p =>
-        <div className='eyeBorder'>
+        <div className='eyeBorder' key={p.style}>
             <div className='eye' ref={eye}>
                 <div className={p.style} ref={p.ref}
                     style={{ transform: p.transform }}>

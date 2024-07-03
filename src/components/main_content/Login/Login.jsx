@@ -8,21 +8,16 @@ import LoginForm from './LoginForm';
 import BearFormContainer from '../../common/FormBear/BearFormContainer';
 
 const Login = (props) => {
-    const { t, logInUser } = props;
+    const t = props.t;
 
     document.title = t('pageTitles.login');
 
-    const onSubmit = (formData) => {
-        logInUser(formData)
-    }
-
     return (
         <div className={styles.loginPage}>
-            <BearFormContainer styles={styles}>
-                <LoginForm onSubmit={onSubmit} t={t} />
-            </BearFormContainer>
+            <BearFormContainer styles={styles}
+                Component={(componentProps) => <LoginForm {...props} {...componentProps} />} />
 
-            <h1>{props.t('loginPage.login')}</h1>
+            <h1>{t('loginPage.login')}</h1>
         </div>
     );
 };
