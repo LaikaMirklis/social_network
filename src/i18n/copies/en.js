@@ -1,4 +1,4 @@
-export const eng = {
+export const en = {
   pageTitles: {
     profile: 'Profile',
     dialogs: 'Dialogs',

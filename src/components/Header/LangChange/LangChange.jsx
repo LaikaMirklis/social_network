@@ -1,34 +1,28 @@
-import React, { useState } from 'react';
-import i18next from 'i18next';
+import './select-lang.scss';
 import { LOCALS } from '../../../i18n/constants';
 import Select from 'react-select';
-import './select-lang.scss';
+import { useTranslation } from 'react-i18next';
 
-const LangChange = (props) => {
-    const [selectedLanguage, setSelectedLanguage] = useState(i18next.language);
+const options = [
+    {
+        label: 'Укр',
+        value: LOCALS.UK,
+    },
+    {
+        label: 'Eng',
+        value: LOCALS.EN,
+    },
+];
 
-    const langChange = (choice) => {
-        i18next.changeLanguage(choice.value);
-        setSelectedLanguage(choice.value);
-    };
-
-    const options = [
-        {
-            label: 'Ukr',
-            value: LOCALS.UKR,
-        },
-        {
-            label: 'Eng',
-            value: LOCALS.ENG,
-        },
-    ];
+const LangChange = () => {
+    const { i18n } = useTranslation()
 
     return (
         <Select
             classNamePrefix='langChange'
-            value={options.find((option) => option.value === selectedLanguage)}
+            value={options.find((option) => option.value === i18n.resolvedLanguage)}
             options={options}
-            onChange={langChange}
+            onChange={(choice) => i18n.changeLanguage(choice.value)}
             isSearchable={false}
             blurInputOnSelect={true}
         />

@@ -24,7 +24,6 @@ let AddMessageForm = ({ sendMessage, t, i18n }) => {
     const pickerRef = useRef(null);
     const [cursorPosition, setCursorPosition] = useState(0);
     const [showPicker, setShowPicker] = useState(false);
-    const currentLang = i18n.language.slice(0, -1);
 
     const addNewMessage = (values, form) => {
         sendMessage(values.newMessageBody);
@@ -83,7 +82,7 @@ let AddMessageForm = ({ sendMessage, t, i18n }) => {
                             <div className={styles.pickerContainer} ref={pickerRef} >
                                 <Picker data={data} onEmojiSelect={(e) => handleEmojiSelect(e, form)}
                                     previewPosition="none" navPosition='bottom' emojiButtonSize='24'
-                                    emojiSize='16' locale={currentLang} exceptEmojis={['relaxed']}
+                                    emojiSize='16' locale={i18n.resolvedLanguage} exceptEmojis={['relaxed']}
                                 />
                             </div>
                         )}

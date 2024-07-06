@@ -1,4 +1,4 @@
-export const ukr = {
+export const uk = {
   pageTitles: {
     profile: 'Профіль',
     dialogs: 'Діалоги',
