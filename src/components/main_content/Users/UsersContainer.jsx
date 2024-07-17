@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 import { follow, getUsers, unfollow } from '../../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../../common/Preloader/Preloader';
-import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
-import { compose } from 'redux';
-import { withTranslation } from 'react-i18next';
 
 class UsersContainer extends React.Component {
 
@@ -32,11 +29,8 @@ const mapStateToProps = (state) => ({
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPageNumber: state.usersPage.currentPageNumber,
     isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress
+    followingInProgress: state.usersPage.followingInProgress,
+    isAuth: state.auth.isAuth
 });
 
-export default compose(
-    connect(mapStateToProps, { follow, unfollow, getUsers }),
-    withAuthRedirect,
-    withTranslation()
-)(UsersContainer);
+export default connect(mapStateToProps, { follow, unfollow, getUsers })(UsersContainer);

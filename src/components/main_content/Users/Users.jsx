@@ -1,88 +1,36 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './Users.module.css'
 import User from './User/User';
+import { useTranslation } from 'react-i18next';
+import Pagination from './Pagination/Pagination';
 
-const Users = (props) => {
-    const { currentPageNumber, pageSize, totalUsersCount, users, onPageChanged, ...userProps } = props
+const Users = ({ currentPageNumber, pageSize, totalUsersCount, users, onPageChanged, ...userProps }) => {
+    const { t } = useTranslation();
+    const paginationProps = useMemo(() => ({
+        currentPageNumber,
+        pageSize,
+        totalUsersCount,
+        onPageChanged,
+    }), [currentPageNumber, pageSize, totalUsersCount, onPageChanged]);
 
-    document.title = props.t('pageTitles.users')
-
-    const renderPageNumber = (pageNumber) => {
-        switch (pageNumber) {
-            case 0: //pages that hide in "..."
-                return <span className={styles.ellipsis}>...</span>
-            case currentPageNumber:
-                return <span className={styles.selectedPage}>{pageNumber}</span>
-            default:
-                return <span className={styles.pages} onClick={(e) => onPageChanged(pageNumber)}>{pageNumber}</span>
-        }
-    }
-
-    const renderPagesControl = () => {
-        let pagesCount = Math.ceil(totalUsersCount / pageSize);
-        let pages = [];
-        if (currentPageNumber < 5) {
-            for (let i = 1; i <= 5; i++) {
-                pages.push({
-                    number: i,
-                })
-            }
-            pages.push(
-                { number: 0, },
-                { number: pagesCount, }
-            )
-        }
-        else if (currentPageNumber > pagesCount - 3) {
-            pages.push(
-                { number: 1, },
-                { number: 0, }
-            )
-            for (let i = pagesCount - 4; i <= pagesCount; i++) {
-                pages.push({
-                    number: i,
-                })
-            }
-        }
-        else {
-            pages.push(
-                { number: 1, },
-                { number: 0, }
-            )
-            for (let i = currentPageNumber - 1; i <= currentPageNumber + 1; i++) {
-                pages.push({
-                    number: i,
-                })
-            }
-            pages.push(
-                { number: 0, },
-                { number: pagesCount, }
-            )
-        }
-        return pages.map(p => renderPageNumber(p.number))
-
-    }
-
-    let renderedPageControl = renderPagesControl();
+    document.title = t('pageTitles.users')
 
     let usersElements = users.map(user =>
         <User
             key={user.id}
-            {...user}
+            user={user}
             {...userProps}
+            t={t}
         />)
 
     return (
         <div className={styles.usersPage}>
-            <h3>{props.t('usersPage.users')}</h3>
-            <div>
-                {renderedPageControl}
-            </div>
+            <h3>{t('usersPage.users')}</h3>
+            <Pagination {...paginationProps} />
             <div className={styles.users}>
                 {usersElements}
             </div>
-            <div>
-                {renderedPageControl}
-            </div>
+            <Pagination {...paginationProps} />
         </div>
     )
 

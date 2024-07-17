@@ -39,7 +39,7 @@ const setUserPhoto = (userPhoto) => ({
 });
 
 export const getAuthUserData = () => (dispatch) => {
-  authAPI
+  return authAPI
     .getAuthUserData()
     .then((data) => {
       if (data.resultCode === 0) {

@@ -19,6 +19,7 @@ export const en = {
     settings: 'Settings',
     friends: 'Friends',
     logOut: 'Log Out',
+    login: 'Login',
   },
 
   dialogsPage: {

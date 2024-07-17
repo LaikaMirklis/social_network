@@ -12,8 +12,10 @@ export const withAuthRedirect = (Component) => {
   const RedirectComponent = ({ isAuth, ...props }) => {
     let location = useLocation();
 
-    if (!isAuth && location.pathname !== LOGIN_PATH)
-      return <Navigate to={LOGIN_PATH} />;
+    if (!isAuth) {
+      if (props.match?.params?.userId) return <Component {...props} />;
+      if (location.pathname !== LOGIN_PATH) return <Navigate to={LOGIN_PATH} />;
+    }
     if (isAuth && location.pathname === LOGIN_PATH)
       return <Navigate to={PROFILE_PATH} />;
 

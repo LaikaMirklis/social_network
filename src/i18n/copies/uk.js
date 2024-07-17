@@ -19,6 +19,7 @@ export const uk = {
     settings: 'Налаштування',
     friends: 'Друзі',
     logOut: 'Вийти',
+    login: 'Вхід',
   },
 
   dialogsPage: {

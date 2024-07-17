@@ -1,9 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styles from './NavbarItem.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from 'react-i18next';
 
-const NavbarItem = (props) => {
-    const { title, icon, isExist, Component, textStyle, wrapperStyle, t } = props;
+const NavbarItem = ({ title, icon, isExist, Component, hideText }) => {
+    const { t } = useTranslation();
+
+    const textStyle = { display: hideText ? 'none' : 'block' };
+    const wrapperStyle = { width: hideText ? 'auto' : '11em' };
 
     const content = (
         <span>

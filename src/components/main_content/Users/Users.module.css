@@ -26,33 +26,6 @@
   margin: 1.25em 0;
 }
 
-.pages,
-.selectedPage,
-.ellipsis {
-  margin: 0 0.125em;
-  padding: 0.125em 0.5em;
-  font-weight: bold;
-  border: 0.125em solid #382a2e;
-  border-radius: 50%;
-  cursor: default;
-}
-
-.pages {
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.pages:hover,
-.pages:focus {
-  color: #af7557;
-  border: 0.125em solid #af7557;
-}
-
-.selectedPage {
-  color: #ece0c9;
-  background-color: #382a2e;
-}
-
 /* Adaptive size */
 @media screen and (1200px < width) {
   .usersPage {

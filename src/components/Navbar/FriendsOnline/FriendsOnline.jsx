@@ -1,8 +1,10 @@
 import Friend from './Friend/Friend';
 import styles from './FriendsOnline.module.css'
+import { useTranslation } from 'react-i18next';
 
-const FriendsOnline = (props) => {
-    const { t, friends } = props;
+const FriendsOnline = ({ friends }) => {
+    const { t } = useTranslation();
+
     let friendElements = friends.map(f => {
         const { id, ...rest } = f
         return <Friend
