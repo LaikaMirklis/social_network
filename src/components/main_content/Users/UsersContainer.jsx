@@ -17,8 +17,8 @@ class UsersContainer extends React.Component {
     render() {
         const { getUsers, isFetching, ...usersProps } = this.props
         return <>
-            {isFetching ? <Preloader /> : null}
-            <Users {...usersProps} onPageChanged={this.onPageChanged} />
+            {isFetching && <Preloader />}
+            {this.props.users.length > 0 && <Users {...usersProps} onPageChanged={this.onPageChanged} />}
         </>
     }
 }

@@ -6,16 +6,17 @@ import Preloader from '../../common/Preloader/Preloader';
 import { withRouter } from '../../../hoc/withRouter';
 import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import { withTranslation } from 'react-i18next';
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId && this.props.authorizedUserId)
-            userId = this.props.authorizedUserId;
-        this.props.getUserProfile(userId);
-        this.props.getUserStatus(userId);
+        const { match, authorizedUserId, getUserProfile, getUserStatus } = this.props;
+        let userId = match.params.userId || authorizedUserId;
+
+        if (userId) {
+            getUserProfile(userId);
+            getUserStatus(userId);
+        }
     }
 
     componentWillUnmount() {
@@ -23,24 +24,28 @@ class ProfileContainer extends React.Component {
     }
 
     compareIds() {
-        if (this.props.profile)
-            return this.props.profile.userId === this.props.authorizedUserId
+        const { profile, authorizedUserId } = this.props;
+
+        if (profile)
+            return profile.userId === authorizedUserId
     }
 
     getProfileWithProps() {
         const { match, authorizedUserId, getUserProfile, getUserStatus, ...profileProps } = this.props;
+
         return <Profile  {...profileProps} isAuthUserProfile={this.compareIds()} />
     }
 
     render() {
-        if (!this.props.profile)
+        const { profile, match, getUserProfile, getUserStatus, authorizedUserId } = this.props;
+
+        if (!profile)
             return <Preloader />
 
-        if (!this.props.match.params.userId && !this.compareIds()) {
-            this.props.getUserProfile(0); // to see Preloader
-            this.props.getUserProfile(this.props.authorizedUserId);
-            this.props.getUserStatus(this.props.authorizedUserId);
-            return this.getProfileWithProps()
+        if (!match.params.userId && !this.compareIds()) {
+            getUserProfile(0)
+            getUserProfile(authorizedUserId);
+            getUserStatus(authorizedUserId);
         }
 
         return this.getProfileWithProps()
@@ -57,6 +62,4 @@ const mapStateToProps = (state) => ({
 export default compose(
     connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
     withRouter,
-    withAuthRedirect,
-    withTranslation()
-)(ProfileContainer);
+    withAuthRedirect)(ProfileContainer);

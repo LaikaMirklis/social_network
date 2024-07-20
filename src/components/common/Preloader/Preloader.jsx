@@ -1,13 +1,13 @@
 import './Preloader.css';
 import preloader from '../../../assets/images/preloader.svg'
 
-const Preloader = (props) => {
+const Preloader = ({ customStyles }) => {
     let styles = {
         wrapper: { backgroundColor: 'rgba(0, 0, 0, 0.1)' },
         preloader: { position: 'fixed' }
     };
 
-    if (props.customStyles === 'preloaderInBlock') {
+    if (customStyles === 'preloaderInBlock') {
         styles.wrapper.backgroundColor = 'transparent';
         styles.preloader = { padding: '0' };
     }

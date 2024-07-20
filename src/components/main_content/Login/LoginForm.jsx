@@ -24,6 +24,7 @@ const LoginForm = ({ logInUser, t, setIsHidden }) => {
     const [passwordConfig, setPasswordConfig] = useState(hiddenPasswordConfig);
     const [formError, setFormError] = useState(null);
     const [captchaImgUrl, setCaptchaImgUrl] = useState(null);
+    const { inputType, icon, buttonClass, title } = passwordConfig;
 
     const togglePasswordVisibility = () => {
         setPasswordConfig(prevConfig =>
@@ -37,8 +38,6 @@ const LoginForm = ({ logInUser, t, setIsHidden }) => {
         if (captchaImgUrl)
             setIsHidden(true);
     }, [captchaImgUrl, setIsHidden]);
-
-    const { inputType, icon, buttonClass, title } = passwordConfig;
 
     return (
         <Form onSubmit={(values) => {

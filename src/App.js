@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/main_content/Profile/ProfileContainer';
-import DialogsContainer from './components/main_content/Dialogs/DialogsContainer';
+import Dialogs from './components/main_content/Dialogs/Dialogs';
 import News from './components/main_content/News/News';
 import Music from './components/main_content/Music/Music';
 import Settings from './components/main_content/Settings/Settings';
@@ -32,7 +32,7 @@ class App extends React.Component {
           <Routes>
             <Route path="/" element={<ProfileContainer />} />
             <Route path="/profile/:userId?" element={<ProfileContainer />} />
-            <Route path="/dialogs" element={<DialogsContainer />} />
+            <Route path="/dialogs" element={<Dialogs />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/users" element={<UsersContainer />} />

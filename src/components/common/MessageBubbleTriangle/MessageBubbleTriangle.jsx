@@ -1,7 +1,7 @@
 import './MessageBubbleTriangle.css'
 
-const MessageBubbleTriangle = (props) => {
-    return <div className={`triangle ${props.triangleClassName}`}>
+const MessageBubbleTriangle = ({ triangleClassName }) => (
+    <div className={`triangle ${triangleClassName}`}>
         <div className='first'>
             <div className='light second'>
                 <div className='third'>
@@ -11,7 +11,7 @@ const MessageBubbleTriangle = (props) => {
             </div>
         </div>
     </div>
-}
+)
 
 export default MessageBubbleTriangle;
 
