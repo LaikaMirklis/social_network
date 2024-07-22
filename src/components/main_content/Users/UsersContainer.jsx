@@ -44,4 +44,4 @@ const mapStateToProps = (state) => ({
     isAuth: getIsAuth(state)
 });
 
-export default connect(mapStateToProps, { follow, unfollow, requestUsers })(UsersContainer);
+export default connect(mapStateToProps, { follow, unfollow, getUsers: requestUsers })(UsersContainer);
