@@ -33,6 +33,7 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        // console.log("RENDER PROFILE");
         if (!this.props.profile)
             return <Preloader />
 
@@ -47,12 +48,15 @@ class ProfileContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    profile: state.profilePage.profile,
-    authorizedUserId: state.auth.userId,
-    status: state.profilePage.status,
-    isFetching: state.profilePage.isFetching,
-});
+const mapStateToProps = (state) => {
+    // console.log('mapStateToProps PROFILE')
+    return {
+        profile: state.profilePage.profile,
+        authorizedUserId: state.auth.userId,
+        status: state.profilePage.status,
+        isFetching: state.profilePage.isFetching
+    }
+};
 
 export default compose(
     connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
