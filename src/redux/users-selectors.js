@@ -1,12 +1,6 @@
-export const getUsers = (state) => {
-  // return state.usersPage.users;
-  return state.usersPage.users.filter((u) => true);
-};
+import { createSelector } from 'reselect';
 
-export const getTempSavedUsers = (state) => {
-  return state.usersPage.users.filter((u) => true); // that are in tempsavedArray
-};
-
+export const getUsers = (state) => state.usersPage.users;
 export const getPageSize = (state) => state.usersPage.pageSize;
 export const getTotalUsersCount = (state) => state.usersPage.totalUsersCount;
 export const getCurrentPageNumber = (state) =>
@@ -16,9 +10,7 @@ export const getFollowingInProgress = (state) =>
   state.usersPage.followingInProgress;
 export const getIsAuth = (state) => state.auth.isAuth;
 
-export const countSomethingDifficult = (state) => {
-  debugger;
-  //for... math... big arrays
-  let count = 23;
-  return count;
-};
+//example of a complex selector
+export const getUsersSuperSelector = createSelector(getUsers, (users) => {
+  return users.filter((u) => true);
+});
