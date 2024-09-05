@@ -6,7 +6,7 @@ export const en = {
     music: 'Music',
     users: 'Find users',
     settings: 'Settings',
-    notFound: '404 Not found',
+    404: '404 Not found',
     login: 'Login',
   },
 

@@ -1,51 +1,55 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { follow, requestUsers, unfollow } from '../../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../../common/Preloader/Preloader';
-import { getCurrentPageNumber, getFollowingInProgress, getIsAuth, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../../redux/users-selectors';
+import {
+    getCurrentPageNumber, getFollowingInProgress, getIsAuth,
+    getIsFetching, getPageSize, getTotalUsersCount, getUsers
+} from '../../../redux/users-selectors';
 
-class UsersContainer extends React.Component {
+const UsersContainer = () => {
+    const dispatch = useDispatch();
 
-    componentDidMount() {
-        this.props.getUsers(this.props.pageSize, this.props.currentPageNumber)
-    }
+    const users = useSelector(getUsers);
+    const pageSize = useSelector(getPageSize);
+    const totalUsersCount = useSelector(getTotalUsersCount);
+    const currentPageNumber = useSelector(getCurrentPageNumber);
+    const isFetching = useSelector(getIsFetching);
+    const followingInProgress = useSelector(getFollowingInProgress);
+    const isAuth = useSelector(getIsAuth);
 
-    onPageChanged = (pageNumber) => {
-        this.props.getUsers(this.props.pageSize, pageNumber)
-    }
+    useEffect(() => {
+        dispatch(requestUsers(pageSize, currentPageNumber));
+    }, []);
 
-    render() {
-        console.log("RENDER USERS");
-        const { getUsers, isFetching, ...usersProps } = this.props
-        return <>
-            {isFetching ? <Preloader /> : null}
-            <Users {...usersProps} onPageChanged={this.onPageChanged} />
+    const onPageChanged = (pageNumber) => {
+        dispatch(requestUsers(pageSize, pageNumber));
+    };
+
+    const handleFollow = (userId) => {
+        dispatch(follow(userId));
+    };
+    const handleUnfollow = (userId) => {
+        dispatch(unfollow(userId));
+    };
+
+    return (
+        <>
+            {isFetching && <Preloader />}
+            <Users
+                users={users}
+                totalUsersCount={totalUsersCount}
+                followingInProgress={followingInProgress}
+                isAuth={isAuth}
+                currentPageNumber={currentPageNumber}
+                pageSize={pageSize}
+                onPageChanged={onPageChanged}
+                follow={handleFollow}
+                unfollow={handleUnfollow}
+            />
         </>
-    }
+    );
 }
 
-// const mapStateToProps = (state) => ({
-//     users: state.usersPage.users,
-//     pageSize: state.usersPage.pageSize,
-//     totalUsersCount: state.usersPage.totalUsersCount,
-//     currentPageNumber: state.usersPage.currentPageNumber,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress,
-//     isAuth: state.auth.isAuth
-// });
-
-const mapStateToProps = (state) => {
-    console.log('mapStateToProps USERS')
-    return {
-        users: getUsers(state),
-        pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
-        currentPageNumber: getCurrentPageNumber(state),
-        isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state),
-        isAuth: getIsAuth(state)
-    }
-};
-
-export default connect(mapStateToProps, { follow, unfollow, getUsers: requestUsers })(UsersContainer);
+export default UsersContainer;

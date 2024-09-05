@@ -1,66 +1,48 @@
-import React from 'react';
 import Profile from './Profile';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUserStatus, getUserProfile, getUserStatus } from '../../../redux/profile-reducer';
 import Preloader from '../../common/Preloader/Preloader';
-import { withRouter } from '../../../hoc/withRouter';
-import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
-import { compose } from 'redux';
-import { withTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-class ProfileContainer extends React.Component {
+const ProfileContainer = () => {
+    const dispatch = useDispatch();
+    const { userId: paramUserId } = useParams();
+    const { t } = useTranslation();
 
-    componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if (!userId && this.props.authorizedUserId)
-            userId = this.props.authorizedUserId;
-        this.props.getUserProfile(userId);
-        this.props.getUserStatus(userId);
-    }
+    const profile = useSelector((state) => state.profilePage.profile);
+    const authorizedUserId = useSelector((state) => state.auth.userId);
+    const status = useSelector((state) => state.profilePage.status);
+    const isFetching = useSelector((state) => state.profilePage.isFetching);
 
-    componentWillUnmount() {
-        this.props.getUserProfile(0);
-    }
+    const userId = paramUserId || authorizedUserId;
 
-    compareIds() {
-        if (this.props.profile)
-            return this.props.profile.userId === this.props.authorizedUserId
-    }
-
-    getProfileWithProps() {
-        const { match, authorizedUserId, getUserProfile, getUserStatus, ...profileProps } = this.props;
-        return <Profile  {...profileProps} isAuthUserProfile={this.compareIds()} />
-    }
-
-    render() {
-        // console.log("RENDER PROFILE");
-        if (!this.props.profile)
-            return <Preloader />
-
-        if (!this.props.match.params.userId && !this.compareIds()) {
-            this.props.getUserProfile(0); // to see Preloader
-            this.props.getUserProfile(this.props.authorizedUserId);
-            this.props.getUserStatus(this.props.authorizedUserId);
-            return this.getProfileWithProps()
+    useEffect(() => {
+        if (userId) {
+            dispatch(getUserProfile(userId));
+            dispatch(getUserStatus(userId));
         }
+        return (() => dispatch(getUserProfile(0)))
+    }, [userId]);
 
-        return this.getProfileWithProps()
+    const handleUpdateUserStatus = (status) => {
+        dispatch(updateUserStatus(status))
     }
+
+    if (!profile)
+        return <Preloader />
+
+    return (
+        <Profile
+            t={t}
+            profile={profile}
+            status={status}
+            isFetching={isFetching}
+            updateUserStatus={handleUpdateUserStatus}
+            isAuthUserProfile={profile?.userId === authorizedUserId}
+        />
+    )
 }
 
-const mapStateToProps = (state) => {
-    // console.log('mapStateToProps PROFILE')
-    return {
-        profile: state.profilePage.profile,
-        authorizedUserId: state.auth.userId,
-        status: state.profilePage.status,
-        isFetching: state.profilePage.isFetching
-    }
-};
-
-export default compose(
-    connect(mapStateToProps, { getUserProfile, getUserStatus, updateUserStatus }),
-    withRouter,
-    withAuthRedirect,
-    withTranslation()
-)(ProfileContainer);
+export default ProfileContainer;

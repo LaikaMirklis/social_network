@@ -13,8 +13,6 @@ const Users = ({ currentPageNumber, pageSize, totalUsersCount, users, onPageChan
         onPageChanged,
     }), [currentPageNumber, pageSize, totalUsersCount, onPageChanged]);
 
-    document.title = t('pageTitles.users')
-
     let usersElements = users.map(user =>
         <User
             key={user.id}

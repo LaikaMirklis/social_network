@@ -2,6 +2,8 @@ import { authAPI, profileAPI } from '../api/api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
+const SET_FORM_ERROR = 'SET_FORM_ERROR';
+const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
 
 let initialState = {
   userId: null,
@@ -10,6 +12,8 @@ let initialState = {
   isFetching: false,
   isAuth: false,
   userPhoto: null,
+  formError: null,
+  captchaUrl: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -24,6 +28,16 @@ const authReducer = (state = initialState, action) => {
         ...state,
         userPhoto: action.userPhoto,
       };
+    case SET_FORM_ERROR:
+      return {
+        ...state,
+        formError: action.formError,
+      };
+    case SET_CAPTCHA_URL:
+      return {
+        ...state,
+        captchaUrl: action.captchaUrl,
+      };
     default:
       return state;
   }
@@ -36,6 +50,14 @@ const setAuthUserData = (userId, login, email, isAuth) => ({
 const setUserPhoto = (userPhoto) => ({
   type: SET_USER_PHOTO,
   userPhoto,
+});
+const setFormError = (formError) => ({
+  type: SET_FORM_ERROR,
+  formError,
+});
+const setCaptchaUrl = (captchaUrl) => ({
+  type: SET_CAPTCHA_URL,
+  captchaUrl,
 });
 
 export const getAuthUserData = () => (dispatch) => {
@@ -56,7 +78,7 @@ export const getAuthUserData = () => (dispatch) => {
 };
 
 export const logInUser =
-  ({ email, password, rememberMe, captcha }, setFormError, setCaptchaImgUrl) =>
+  ({ email, password, rememberMe, captcha }) =>
   (dispatch) => {
     authAPI.logIn(email, password, rememberMe, captcha).then((data) => {
       const { resultCode, messages } = data;
@@ -64,13 +86,18 @@ export const logInUser =
         dispatch(getAuthUserData());
       } else {
         let message = messages.length > 0 ? messages[0] : 'Some error';
-        setFormError(message);
+        dispatch(setFormError(message));
         if (resultCode === 10) {
-          authAPI.getCaptcha().then((url) => setCaptchaImgUrl(url));
+          authAPI.getCaptcha().then((url) => dispatch(setCaptchaUrl(url)));
         }
       }
     });
   };
+
+export const clearErrorData = () => (dispatch) => {
+  dispatch(setFormError(null));
+  dispatch(setCaptchaUrl(null));
+};
 
 export const logOutAuthUser = () => (dispatch) => {
   authAPI.logOut().then((data) => {

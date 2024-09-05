@@ -1,20 +1,25 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { sendMessage } from '../../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
-import { connect } from 'react-redux';
-import { compose } from 'redux'
-import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
-import { withTranslation } from 'react-i18next';
 
-const DialogsContainer = (props) => {
-    document.title = props.t('pageTitles.dialogs')
+const DialogsContainer = () => {
+    const dispatch = useDispatch();
+    const { t, i18n } = useTranslation();
+    const dialogsPage = useSelector((state) => state.dialogsPage);
 
-    return <Dialogs {...props} />;
+    const handleSendMessage = (newMessageBody) => {
+        dispatch(sendMessage(newMessageBody))
+    }
+
+    return (
+        <Dialogs
+            t={t}
+            i18n={i18n}
+            dialogsPage={dialogsPage}
+            sendMessage={handleSendMessage}
+        />
+    )
 };
 
-let mapStateToProps = (state) => ({ dialogsPage: state.dialogsPage })
-
-export default compose(
-    connect(mapStateToProps, { sendMessage }),
-    withAuthRedirect,
-    withTranslation(),
-)(DialogsContainer);
+export default DialogsContainer;

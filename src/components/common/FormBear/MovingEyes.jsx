@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MovingEyes.css';
 
-const MovingEyes = (props) => {
+const MovingEyes = ({ eyesClassName }) => {
     const eye = useRef(null);
     const leftPupil = useRef(null);
     const rightPupil = useRef(null);
-    // з React.createRef не працювало, чому?
     const [leftPupilTransform, setLeftPupilTransform] = useState('translate(0, 0)');
     const [rightPupilTransform, setRightPupilTransform] = useState('translate(0, 0)');
 
     let calculatePosition = (ref, e, setState) => {
-
         const pupilRect = ref.current.getBoundingClientRect();
         const eyeRect = eye.current.getBoundingClientRect();
 
         const offsetX = e.pageX - pupilRect.left;
         const offsetY = e.pageY - pupilRect.top;
 
-        const divisor = 500
-        //  divisor переназвати
+        const divisor = 500 //  divisor переназвати
 
         const maxOffset = ((eyeRect.width - pupilRect.width) / 2) / 16  // (/16) => to em
         const offsetLimit = divisor * maxOffset
@@ -32,8 +29,6 @@ const MovingEyes = (props) => {
         }
         const x = setOffset(offsetX)
         const y = setOffset(offsetY)
-
-
 
         setState(`translate(${x}, ${y})`)
     }
@@ -50,8 +45,6 @@ const MovingEyes = (props) => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
-
-
 
     const pupilsData = [{
         ref: leftPupil,
@@ -76,11 +69,11 @@ const MovingEyes = (props) => {
         </div>
     )
 
-    return <div className={`eyes ${props.eyesClassName}`} >
-        {eyesElements}
-    </div>
-
+    return (
+        <div className={`eyes ${eyesClassName}`} >
+            {eyesElements}
+        </div>
+    )
 };
 
 export default MovingEyes;
-

@@ -1,26 +1,20 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Navigate, useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const LOGIN_PATH = '/login';
 const PROFILE_PATH = '/profile';
 
-let mapStateToPropsForRedirect = (state) => ({
-  isAuth: state.auth.isAuth,
-});
+export const withAuthRedirect = (WrappedComponent) => (props) => {
+  let location = useLocation();
+  const params = useParams();
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
-export const withAuthRedirect = (Component) => {
-  const RedirectComponent = ({ isAuth, ...props }) => {
-    let location = useLocation();
+  if (!isAuth) {
+    if (params.userId) return <WrappedComponent {...props} />;
+    if (location.pathname !== LOGIN_PATH) return <Navigate to={LOGIN_PATH} />;
+  }
+  if (isAuth && location.pathname === LOGIN_PATH)
+    return <Navigate to={PROFILE_PATH} />;
 
-    if (!isAuth) {
-      if (props.match?.params?.userId) return <Component {...props} />;
-      if (location.pathname !== LOGIN_PATH) return <Navigate to={LOGIN_PATH} />;
-    }
-    if (isAuth && location.pathname === LOGIN_PATH)
-      return <Navigate to={PROFILE_PATH} />;
-
-    return <Component {...props} />;
-  };
-
-  return connect(mapStateToPropsForRedirect)(RedirectComponent);
+  return <WrappedComponent {...props} />;
 };

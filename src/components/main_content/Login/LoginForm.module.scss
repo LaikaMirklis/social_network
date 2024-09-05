@@ -75,6 +75,10 @@ $input-border: 0.125rem solid #695c58;
       padding-right: 1.75rem;
     }
   }
+
+  img {
+    filter: grayscale(100%);
+  }
 }
 
 .showPasswordBtn {

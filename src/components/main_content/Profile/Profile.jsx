@@ -1,13 +1,9 @@
-import styles from './Profile.module.css'
-import defaultPhoto from '../../../assets/images/user.png'
+import styles from './Profile.module.css';
+import defaultPhoto from '../../../assets/images/user.png';
 import ProfileStatus from './ProfileInfo/ProfileStatus';
 
-const Profile = (props) => {
-    const { profile, i18n, ...profileStatusProps } = props;
-    const { photos, fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = props.profile
-    const t = props.t;
-
-    document.title = props.t('pageTitles.profile');
+const Profile = ({ profile, i18n, t, ...profileStatusProps }) => {
+    const { photos, fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = profile;
 
     return (
         <div className={styles.profilePage}>
@@ -22,7 +18,7 @@ const Profile = (props) => {
 
                     <h2 className={styles.fullName}>{fullName}</h2>
 
-                    <ProfileStatus {...profileStatusProps} />
+                    <ProfileStatus {...profileStatusProps} t={t} />
                 </div>
 
                 <div className={styles.rightBlock}>

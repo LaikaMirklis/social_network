@@ -1,12 +1,19 @@
-import styles from './NavbarItem.module.css'
-import { connect } from 'react-redux';
+import styles from './NavbarItem.module.css';
+import { useDispatch } from 'react-redux';
 import { logOutAuthUser } from '../../../redux/auth-reducer';
 
-let LogOutBtn = (props) => (
-    <button className={styles.button} onClick={props.logOutAuthUser}>
-        {props.children}
-    </button >)
+let LogOutBtn = ({ children }) => {
+    const dispatch = useDispatch();
 
-LogOutBtn = connect(null, { logOutAuthUser })(LogOutBtn)
+    const handleLogOut = () => {
+        dispatch(logOutAuthUser())
+    }
+
+    return (
+        <button className={styles.button} onClick={handleLogOut}>
+            {children}
+        </button >
+    )
+}
 
 export default LogOutBtn;

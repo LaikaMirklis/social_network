@@ -1,54 +1,38 @@
 import './App.css';
-import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import ProfileContainer from './components/main_content/Profile/ProfileContainer';
-import DialogsContainer from './components/main_content/Dialogs/DialogsContainer';
-import News from './components/main_content/News/News';
-import Music from './components/main_content/Music/Music';
-import Settings from './components/main_content/Settings/Settings';
-import UsersContainer from './components/main_content/Users/UsersContainer';
-import NotFound from './components/common/NotFound/NotFound';
-import Login from './components/main_content/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
+import AppRoutes from './AppRoutes';
+import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
+import { useEffect } from 'react';
+import { useDocumentTitle } from './hook/useDocumentTitle';
+import { useAuthRedirect } from './hook/useAuthRedirect';
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.initializeApp();
-  }
+const App = () => {
+  const dispatch = useDispatch();
+  const initialized = useSelector((state) => state.app.initialized);
+  const redirect = useAuthRedirect(initialized);
 
-  render() {
-    if (!this.props.initialized) return <Preloader />;
+  useEffect(() => {
+    dispatch(initializeApp());
+  }, []);
 
-    return (
-      <div className="app-wrapper">
-        <Navbar />
-        <Header />
-        <div className="app-wrapper-content">
-          <Routes>
-            <Route path="/" element={<ProfileContainer />} />
-            <Route path="/profile/:userId?" element={<ProfileContainer />} />
-            <Route path="/dialogs" element={<DialogsContainer />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/users" element={<UsersContainer />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Navigate to="/404" replace />} />
-            <Route path="/404" element={<NotFound />} />
-          </Routes>
-        </div>
+  useDocumentTitle(initialized);
+
+  if (redirect) return redirect;
+
+  if (!initialized) return <Preloader />;
+
+  return (
+    <div className="app-wrapper">
+      <Navbar />
+      <Header />
+      <div className="app-wrapper-content">
+        <AppRoutes />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapStateToProps = (state) => ({
-  initialized: state.app.initialized,
-});
-
-export default connect(mapStateToProps, { initializeApp })(App);
+export default App;

@@ -1,29 +1,47 @@
 import styles from './Login.module.css';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { withAuthRedirect } from '../../../hoc/withAuthRedirect';
-import { withTranslation } from 'react-i18next';
-import { logInUser } from '../../../redux/auth-reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { clearErrorData, logInUser } from '../../../redux/auth-reducer';
 import LoginForm from './LoginForm';
 import BearFormContainer from '../../common/FormBear/BearFormContainer';
+import { useEffect, useState } from 'react';
 
-const Login = (props) => {
-    const t = props.t;
+const Login = () => {
+    const dispatch = useDispatch();
+    const formError = useSelector((state) => state.auth.formError);
+    const captchaUrl = useSelector((state) => state.auth.captchaUrl);
+    const { t } = useTranslation();
 
-    document.title = t('pageTitles.login');
+    const [isLegHidden, setIsLegHidden] = useState(false);
+
+    const handleLogin = (logInData) => {
+        dispatch(logInUser(logInData));
+    };
+
+    useEffect(() => {
+        if (captchaUrl)
+            setIsLegHidden(true)
+    }, [captchaUrl]);
+
+    useEffect(() => {
+        return () => dispatch(clearErrorData())
+    }, []);
 
     return (
         <div className={styles.loginPage}>
-            <BearFormContainer styles={styles}
-                Component={(componentProps) => <LoginForm {...props} {...componentProps} />} />
+            <BearFormContainer styles={styles} isLegHidden={isLegHidden}
+                Component={(componentProps) =>
+                    <LoginForm
+                        t={t}
+                        logInUser={handleLogin}
+                        captchaUrl={captchaUrl}
+                        formError={formError}
+                        {...componentProps}
+                    />} />
 
             <h1>{t('loginPage.login')}</h1>
         </div>
     );
 };
 
-export default compose(
-    connect(null, { logInUser }),
-    withAuthRedirect,
-    withTranslation()
-)(Login);
+export default Login;

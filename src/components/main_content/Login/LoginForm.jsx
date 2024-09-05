@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './LoginForm.module.scss';
 import { Form, Field } from 'react-final-form'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Input } from '../../common/FormsControls/FormsControls';
 import { required } from '../../../utils/validators/validators';
 
@@ -20,10 +20,8 @@ const visiblePasswordConfig = {
     title: 'loginPage.hidePassword'
 };
 
-const LoginForm = ({ logInUser, t, setIsHidden }) => {
+const LoginForm = ({ formError, captchaUrl, logInUser, t }) => {
     const [passwordConfig, setPasswordConfig] = useState(hiddenPasswordConfig);
-    const [formError, setFormError] = useState(null);
-    const [captchaImgUrl, setCaptchaImgUrl] = useState(null);
 
     const togglePasswordVisibility = () => {
         setPasswordConfig(prevConfig =>
@@ -33,16 +31,11 @@ const LoginForm = ({ logInUser, t, setIsHidden }) => {
         );
     };
 
-    useEffect(() => {
-        if (captchaImgUrl)
-            setIsHidden(true);
-    }, [captchaImgUrl, setIsHidden]);
-
     const { inputType, icon, buttonClass, title } = passwordConfig;
 
     return (
         <Form onSubmit={(values) => {
-            logInUser(values, setFormError, setCaptchaImgUrl)
+            logInUser(values)
         }}>
             {({ handleSubmit }) => (
                 <form className={styles.form} onSubmit={handleSubmit}>
@@ -64,10 +57,10 @@ const LoginForm = ({ logInUser, t, setIsHidden }) => {
                         <Field name='rememberMe' component='input' type='checkbox' />
                         <label className={styles.checkboxLabel}>{t('loginPage.checkbox')}</label>
                     </div>
-                    {captchaImgUrl &&
+                    {captchaUrl &&
                         <>
                             <div className={styles.inputField}>
-                                <img src={captchaImgUrl} alt='captcha' />
+                                <img src={captchaUrl} alt='captcha' />
                             </div>
                             <div className={styles.inputField}>
                                 <Field name='captcha' component='input' />
