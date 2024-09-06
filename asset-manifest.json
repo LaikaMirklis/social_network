@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/social_network/static/css/main.91bebc99.css",
+    "main.js": "/social_network/static/js/main.d02b9028.js",
+    "static/js/488.69b7894a.chunk.js": "/social_network/static/js/488.69b7894a.chunk.js",
+    "static/media/elf-404.png": "/social_network/static/media/elf-404.bdbfc5c4a04d26c475cd.png",
+    "static/media/logo.png": "/social_network/static/media/logo.627c8e4a15cacaf6e7de.png",
+    "static/media/form-bear.svg": "/social_network/static/media/form-bear.5d33ddb7f6a260370c4be1f75783d6ba.svg",
+    "static/media/do-not-cross-line.png": "/social_network/static/media/do-not-cross-line.ce168510efb41da457a2.png",
+    "static/media/user.png": "/social_network/static/media/user.d97cdf9f7d7455d231bb.png",
+    "static/media/form-bear-limbs.svg": "/social_network/static/media/form-bear-limbs.f78729d4b9ece1efd8ce043787356be1.svg",
+    "static/media/preloader.svg": "/social_network/static/media/preloader.7a24ae6b299b5ef613d0750247f0b21f.svg",
+    "static/media/form-bear-leg.svg": "/social_network/static/media/form-bear-leg.2004acead9248d1253c1d2b9133cdce0.svg",
+    "static/media/form-bear-hand.svg": "/social_network/static/media/form-bear-hand.d387f60236fbc974a5e831988621ce00.svg",
+    "index.html": "/social_network/index.html",
+    "main.91bebc99.css.map": "/social_network/static/css/main.91bebc99.css.map",
+    "main.d02b9028.js.map": "/social_network/static/js/main.d02b9028.js.map",
+    "488.69b7894a.chunk.js.map": "/social_network/static/js/488.69b7894a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.91bebc99.css",
+    "static/js/main.d02b9028.js"
+  ]
+}
