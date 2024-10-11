@@ -7,17 +7,9 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.loginPage h1 {
-  color: #382a2e;
-  align-self: stretch;
-  text-align: center;
-  margin: 0 0 1rem 0;
-  font-size: 1.25rem;
-  user-select: none;
-}
-
 .bearWrapper {
   width: 48rem;
+  padding-top: 3rem;
 }
 
 .bear,
@@ -27,7 +19,7 @@
 }
 
 .bearEyes {
-  top: 18.8rem;
+  top: 21.8rem;
   left: 17.1rem;
   column-gap: 6.3rem;
 }

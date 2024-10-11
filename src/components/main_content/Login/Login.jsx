@@ -38,8 +38,6 @@ const Login = () => {
                         formError={formError}
                         {...componentProps}
                     />} />
-
-            <h1>{t('loginPage.login')}</h1>
         </div>
     );
 };

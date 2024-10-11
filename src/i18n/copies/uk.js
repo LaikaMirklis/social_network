@@ -62,6 +62,9 @@ export const uk = {
     logIn: 'Увійти',
     showPassword: 'Показати пароль',
     hidePassword: 'Приховати пароль',
+    bearMessage:
+      'Привіт! Я можу заповнити форму за тебе. Хочеш скористатися даними тестового користувача?',
+    logInAsTestUser: 'Увійти як тестовий користувач',
   },
 
   validationMessages: {

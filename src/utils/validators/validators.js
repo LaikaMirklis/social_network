@@ -3,6 +3,11 @@ export const required = (value) => {
   return 'Field is required';
 };
 
+export const validateEmail = (value) => {
+  if (/.+@.+\..+/.test(value)) return undefined;
+  return 'Invalid email';
+};
+
 export const maxLengthCreator = (maxLength) => (value) => {
   if (value && value.length > maxLength)
     return `Max length is ${maxLength} symbols`;

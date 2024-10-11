@@ -26,7 +26,7 @@ const Navbar = () => {
                         onClick={() => setHideText(!hideText)}
                     />
                 </div>
-                {!isAuth && <NavbarItem {...loginPage} key={loginPage.title} />}
+                {!isAuth && <NavbarItem {...loginPage} key={loginPage.title} hideText={hideText} />}
                 {navbarElements}
             </div>
             {isAuth && <div style={{ display: hideText ? 'none' : 'block' }}>

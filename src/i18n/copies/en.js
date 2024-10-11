@@ -62,6 +62,9 @@ export const en = {
     logIn: 'Log In',
     showPassword: 'Show password',
     hidePassword: 'Hide password',
+    bearMessage:
+      'Hi there! I can fill out the form for you. Want to use the test user data?',
+    logInAsTestUser: 'Log in as test user',
   },
 
   validationMessages: {

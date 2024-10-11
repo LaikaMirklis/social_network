@@ -24,18 +24,6 @@
   width: 5em;
 }
 
-@keyframes pressAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.95);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .followedBtn {
   padding: 0.25em;
   background-color: #382a2e;
@@ -45,7 +33,6 @@
   font-size: 0.875em;
   user-select: none;
   width: 7.5em;
-  animation: pressAnimation 0.3s ease;
 }
 
 .followedBtn:disabled {
